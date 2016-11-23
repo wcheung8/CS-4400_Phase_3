@@ -8,7 +8,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
    <children>
-      <Label layoutX="297.0" layoutY="61.0" text="Application" textFill="#c7b877">
+      <Label layoutX="297.0" layoutY="51.0" text="Application" textFill="#c7b877">
          <font>
             <Font size="41.0" />
          </font>
