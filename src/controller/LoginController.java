@@ -6,7 +6,7 @@ public class LoginController extends Controller {
 	
 	@FXML
 	public void handleLoginPressed() {
-	    
+		showScreen("../view/AdminMainScreen.fxml", "Main Screen");
 	    
 	    
 	}
