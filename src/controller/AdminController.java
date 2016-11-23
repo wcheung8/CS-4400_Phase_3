@@ -7,17 +7,17 @@ public class AdminController extends Controller {
 	// For admin main screen
 	@FXML
 	public void handleViewApplicationsPressed() {
-		showScreen("../view/AdminAppScreen.fxml", "Login");
+		showScreen("../view/AdminAppScreen.fxml", "View Applications");
 	}
 	
 	@FXML
 	public void handleViewPopularProjectPressed() {
-		showScreen("../view/AdminPopularProjectReport.fxml", "Login");
+		showScreen("../view/AdminPopularProjectReport.fxml", "Popular Projects");
 	}
 	
 	@FXML
 	public void handleViewApplicationReportPressed() {
-		
+		showScreen("../view/AdminPopularProjectReport.fxml", "Application Report");
 	}
 	
 	@FXML
