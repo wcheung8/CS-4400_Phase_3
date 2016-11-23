@@ -27,7 +27,7 @@ public class AdminController extends Controller {
 	
 	@FXML
 	public void handleAddCoursePressed() {
-		
+		showScreen("../view/AdminAddCourse.fxml", "Add Course");
 	}
 	
 	// For view applications, maybe split into separate controller later
@@ -43,6 +43,11 @@ public class AdminController extends Controller {
 	
 	@FXML
 	public void handleRejectPressed() {
+		
+	}
+	
+	@FXML
+	public void handleAddCategory() {
 		
 	}
 	
