@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+   <children>
+      <Label layoutX="211.0" layoutY="96.0" text="Choose Functionality" textFill="#c7b877">
+         <font>
+            <Font size="41.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="327.0" layoutY="177.0" onAction="#handleViewApplicationsPressed" text="View Applications" />
+      <Hyperlink layoutX="295.0" layoutY="218.0" onAction="#handleViewPopularProjectPressed" text="View popular project report" />
+      <Hyperlink layoutX="308.0" layoutY="264.0" onAction="#handleViewApplicationReportPressed" text="View Application report" />
+      <Hyperlink layoutX="342.0" layoutY="309.0" onAction="#handleAddProjectPressed" text="Add a Project" />
+      <Hyperlink layoutX="342.0" layoutY="352.0" onAction="#handleAddCoursePressed" text="Add a Course" />
+      <Button layoutX="359.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleCancelPressed" text="Logout" />
+   </children>
+</Pane>
