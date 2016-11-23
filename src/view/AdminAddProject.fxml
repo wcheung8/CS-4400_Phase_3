@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="800.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="800.0"> <!-- manipulate this when doing logic -->
+               <children>
+               	  <Label alignment="center" layoutX="278.0" layoutY="31.0" text="Add a Project" textFill="#c7b877">
+	         		<font>
+	           		  <Font size="41.0" />
+	         		</font></Label>
+                  <Text layoutX="200.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name:" />
+			      <TextField layoutX="307.0" layoutY="98.0" prefHeight="31.0" prefWidth="317.0" />
+			      <Text layoutX="238.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor:" />
+			      <Text layoutX="198.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor Email:" />
+			      <Text layoutX="218.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
+			      <Text layoutX="232.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
+			      <Text layoutX="216.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
+			      <Text layoutX="135.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated # of Students:" />
+			      <Text layoutX="172.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major Requirement:" />
+			      <Text layoutX="177.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year Requirement:" />
+			      <Text layoutX="130.0" layoutY="561.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department Requirement:" />
+			      <TextField layoutX="307.0" layoutY="135.0" prefHeight="31.0" prefWidth="316.0" />
+			      <TextField layoutX="306.0" layoutY="175.0" prefHeight="31.0" prefWidth="316.0" />
+			      <TextField layoutX="307.0" layoutY="213.0" prefHeight="129.0" prefWidth="316.0" />
+			      <TextField layoutX="306.0" layoutY="426.0" prefHeight="31.0" prefWidth="316.0" />
+			      <ChoiceBox layoutX="307.0" layoutY="389.0" prefHeight="31.0" prefWidth="316.0" />
+			      <ChoiceBox layoutX="307.0" layoutY="348.0" prefHeight="31.0" prefWidth="316.0" />
+			      <ChoiceBox layoutX="307.0" layoutY="466.0" prefHeight="31.0" prefWidth="316.0" />
+			      <ChoiceBox layoutX="307.0" layoutY="505.0" prefHeight="31.0" prefWidth="316.0" />
+			      <ChoiceBox layoutX="307.0" layoutY="548.0" prefHeight="31.0" prefWidth="316.0" />
+            			      <Button layoutX="408.0" layoutY="631.0" mnemonicParsing="false" text="Submit" />
+            			      <Button layoutX="325.0" layoutY="631.0" mnemonicParsing="false" text="Back" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
