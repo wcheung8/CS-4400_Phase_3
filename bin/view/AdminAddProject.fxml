@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+   <children>
+      <ScrollPane layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="800.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="800.0"> <!-- manipulate this when doing logic -->
+               <children>
+               	  <Label alignment="center" layoutX="278.0" layoutY="31.0" text="Add a Project" textFill="#c7b877">
+	         		<font>
+	           		  <Font size="41.0" />
+	         		</font></Label>
+                  <Text layoutX="146.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name:" />
+			      <TextField layoutX="253.0" layoutY="97.0" prefHeight="31.0" prefWidth="317.0" />
+			      <Text layoutX="184.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor:" />
+			      <Text layoutX="144.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor Email:" />
+			      <Text layoutX="164.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
+			      <Text layoutX="178.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
+			      <Text layoutX="162.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
+			      <Text layoutX="81.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated # of Students:" />
+			      <Text layoutX="118.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major Requirement:" />
+			      <Text layoutX="123.0" layoutY="526.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year Requirement:" />
+			      <Text layoutX="76.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department Requirement:" />
+			      <TextField layoutX="253.0" layoutY="134.0" prefHeight="31.0" prefWidth="316.0" />
+			      <TextField layoutX="252.0" layoutY="174.0" prefHeight="31.0" prefWidth="316.0" />
+			      <TextField layoutX="253.0" layoutY="212.0" prefHeight="129.0" prefWidth="316.0" />
+			      <TextField layoutX="252.0" layoutY="425.0" prefHeight="31.0" prefWidth="316.0" />
+			      <ChoiceBox layoutX="253.0" layoutY="388.0" prefHeight="31.0" prefWidth="316.0" />
+			      <ChoiceBox layoutX="253.0" layoutY="347.0" prefHeight="31.0" prefWidth="316.0" />
+			      <ChoiceBox layoutX="253.0" layoutY="465.0" prefHeight="31.0" prefWidth="316.0" />
+			      <ChoiceBox layoutX="253.0" layoutY="504.0" prefHeight="31.0" prefWidth="316.0" />
+			      <ChoiceBox layoutX="253.0" layoutY="547.0" prefHeight="31.0" prefWidth="316.0" />
+            	  <Button layoutX="354.0" layoutY="630.0" mnemonicParsing="false" text="Submit" />
+            	  <Button layoutX="271.0" layoutY="630.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
+                  <Hyperlink layoutX="587.0" layoutY="349.0" text="Add a new category" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
