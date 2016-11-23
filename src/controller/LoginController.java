@@ -41,14 +41,21 @@ public class LoginController extends Controller {
 
 			rs.next();
 			
-			if(password.equals(rs.getString("password"))){
+			if(username.isEmpty() || password.isEmpty()) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+	            alert.initOwner(Main.stage());
+	            alert.setTitle("Invalid Login");
+	            alert.setHeaderText("Invalid Login");
+	            alert.setContentText("Username or password not filled.");
+	            alert.show();
+			} else if(password.equals(rs.getString("password"))){
 				showScreen("../view/MainScreen.fxml", "Main Screen");
 			} else {
 	            Alert alert = new Alert(Alert.AlertType.ERROR);
 	            alert.initOwner(Main.stage());
 	            alert.setTitle("User Not Found");
 	            alert.setHeaderText("User Not Found");
-	            alert.setContentText("Username or password incorrect");
+	            alert.setContentText("Username or password incorrect.");
 	            alert.show();
 	        }
 			

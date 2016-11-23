@@ -39,8 +39,15 @@ public class RegisterController extends Controller {
 		String email = emailField.getText();
 		String password = passwordField.getText();
 		String checkPassword = checkPasswordField.getText();
-		
-		if (!checkPassword.equals(password) ) {
+
+		if (username.isEmpty() || password.isEmpty() || email.isEmpty() || checkPassword.isEmpty()) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.initOwner(Main.stage());
+			alert.setTitle("Invalid Login");
+			alert.setHeaderText("Invalid Login");
+			alert.setContentText("Username or password not filled.");
+			alert.show();
+		} else if (!checkPassword.equals(password)) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.initOwner(Main.stage());
 			alert.setTitle("Passwords must match!");
@@ -59,14 +66,14 @@ public class RegisterController extends Controller {
 				int rs = stmt.executeUpdate(sql);
 
 				System.out.println(rs);
-				
+
 				stmt.close();
 				conn.close();
-				
+
 				showScreen("../view/LoginScreen.fxml", "Login");
 
 			} catch (SQLException se) {
-				if(se.getMessage().contains("Duplicate")) {
+				if (se.getMessage().contains("Duplicate")) {
 					Alert alert = new Alert(Alert.AlertType.ERROR);
 					alert.initOwner(Main.stage());
 					alert.setTitle("User already exists!");
