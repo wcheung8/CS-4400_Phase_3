@@ -9,7 +9,7 @@ import java.sql.*;
 
 import fxapp.Main;
 
-public class LoginController extends Controller {
+public class ApplicationController extends Controller {
 
 	// driver details
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -50,7 +50,6 @@ public class LoginController extends Controller {
 				
 
 				if (rs.next() && password.equals(rs.getString("password"))) {
-					Main.currentUsername = username;
 					if (rs.getInt("isAdmin") == 1) {
 						showScreen("../view/AdminMainScreen.fxml", "Main Screen");
 					} else {
@@ -79,7 +78,7 @@ public class LoginController extends Controller {
 	}
 
 	@FXML
-	public void handleRegisterPressed() {
-		showScreen("../view/RegisterScreen.fxml", "Register");
+	public void handleBackPressed() {
+		showScreen("../view/MainScreen.fxml", "Main Screen");
 	}
 }

@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.Activity;
 
 /**
  * Entry point into the application.
@@ -15,8 +16,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private static Stage mainStage;
-    private static String currentUsername;
-    private static boolean isAdmin;
+    public static String currentUsername;
+    public static Activity selectedActivity;
 
     /**
      * @return the single instance of the main stage.

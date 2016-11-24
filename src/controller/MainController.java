@@ -12,6 +12,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Activity;
 
+import fxapp.Main;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -113,10 +115,10 @@ public class MainController extends Controller {
 		
 	}
 
-	private void openApplicationDialog(Activity newValue) {
+	private void openApplicationDialog(Activity selected) {
 
-		
-		showDialogAndWait("../view/Application.fxml", "Application");
+		Main.selectedActivity = selected;
+		showScreen("../view/Application.fxml", "Application");
 		
 	}
 

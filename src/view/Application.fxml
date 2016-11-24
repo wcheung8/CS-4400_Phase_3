@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ApplicationController">
+   <children>
+	    <Label alignment="center" layoutX="299.0" layoutY="43.0" text="Project Title" textFill="#c7b877">
+			<font>
+				<Font size="41.0" />
+			</font>
+		</Label>
+		<Text layoutX="205.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor:" />
+		<Text layoutX="207.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
+		<Text layoutX="205.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
+		<Text layoutX="205.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
+		<Button layoutX="415.0" layoutY="519.0" mnemonicParsing="false" text="Apply" />
+		<Button layoutX="332.0" layoutY="519.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
+      <Text layoutX="205.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requirements:" />
+      <Text layoutX="205.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated Number of Students:" />
+      <Text layoutX="302.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation Placeholder" />
+      <Text layoutX="286.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category Placeholder" />
+      <TextArea layoutX="205.0" layoutY="212.0" prefHeight="124.0" prefWidth="388.0" text="Description Placeholder&#10;" />
+      <Text layoutX="308.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requirements Placeholder" />
+      <Text layoutX="423.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" />
+      <Text layoutX="278.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AdvisorName + Email" />      
+   </children>
+</AnchorPane>
