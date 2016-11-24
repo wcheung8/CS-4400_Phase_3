@@ -60,8 +60,8 @@
                <children>
                   <TableView fx:id="view" layoutX="7.0" layoutY="6.0" prefHeight="264.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="672.0" text="Name" />
-                      <TableColumn minWidth="0.0" prefWidth="127.0" text="Type" />
+                      <TableColumn fx:id="activityName" prefWidth="672.0" text="Name" />
+                      <TableColumn fx:id="activityType" minWidth="0.0" prefWidth="127.0" text="Type" />
                     </columns>
                   </TableView>
                </children>

@@ -38,11 +38,11 @@
                   <Label layoutX="49.0" layoutY="137.0" text="Title" AnchorPane.leftAnchor="49.0" />
                   <TextField fx:id="titleField" layoutX="172.0" layoutY="132.0" AnchorPane.bottomAnchor="153.0" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="435.0" AnchorPane.topAnchor="132.0" />
                   <Label layoutX="48.0" layoutY="185.0" text="Designation" AnchorPane.leftAnchor="49.0" />
-                  <ComboBox fx:id="designationField" layoutX="172.0" layoutY="180.0" prefWidth="150.0" />
+                  <ComboBox fx:id="designationField" layoutX="172.0" layoutY="180.0" prefHeight="31.0" prefWidth="187.0" />
                   <Label layoutX="49.0" layoutY="228.0" text="Major" AnchorPane.leftAnchor="49.0" />
-                  <ComboBox fx:id="majorField" layoutX="172.0" layoutY="223.0" prefWidth="150.0" />
+                  <ComboBox fx:id="majorField" layoutX="172.0" layoutY="223.0" prefHeight="31.0" prefWidth="187.0" />
                   <Label layoutX="49.0" layoutY="271.0" text="Year" AnchorPane.leftAnchor="49.0" />
-                  <ComboBox fx:id="yearField" layoutX="172.0" layoutY="266.0" prefWidth="150.0" />
+                  <ComboBox fx:id="yearField" layoutX="172.0" layoutY="266.0" prefHeight="31.0" prefWidth="187.0" />
                   <ListView fx:id="categoryField" layoutX="515.0" layoutY="128.0" prefHeight="71.0" prefWidth="233.0" />
                   <RadioButton fx:id="project" layoutX="432.0" layoutY="213.0" mnemonicParsing="false" selected="true" text="Project">
                      <toggleGroup>
@@ -60,8 +60,8 @@
                <children>
                   <TableView fx:id="view" layoutX="7.0" layoutY="6.0" prefHeight="264.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="672.0" text="Name" />
-                      <TableColumn minWidth="0.0" prefWidth="127.0" text="Type" />
+                      <TableColumn fx:id="activityName" prefWidth="672.0" text="Name" />
+                      <TableColumn fx:id="activityType" minWidth="0.0" prefWidth="127.0" text="Type" />
                     </columns>
                   </TableView>
                </children>

@@ -3,18 +3,17 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import model.Activity;
 
 import java.sql.*;
 import java.util.ArrayList;
-
-import fxapp.Main;
 
 public class MainController extends Controller {
 
@@ -37,15 +36,20 @@ public class MainController extends Controller {
 	@FXML
 	private RadioButton course;
 	@FXML
-	private RadioButton both;
-
+	private TableView<Activity> view;
 	@FXML
-	private TableView view;
+	private TableColumn<Activity, String> activityName;
+	@FXML
+	private TableColumn<Activity, String> activityType;
 
 	Connection conn = null;
 	Statement stmt = null;
 
+	// selected categories list
 	ArrayList<String> selected = new ArrayList<String>();
+
+	// view for all activities
+	ObservableList<Activity> activities = FXCollections.observableArrayList();
 
 	@FXML
 	private void initialize() {
@@ -62,21 +66,21 @@ public class MainController extends Controller {
 			String sql;
 
 			// populate designation
-			sql = "SELECT designationName FROM DESIGNATION;";
+			sql = "SELECT designationName " + "FROM DESIGNATION;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				designationField.getItems().add(rs.getString("designationName"));
 			}
 
 			// populate majors
-			sql = "SELECT majorName FROM MAJOR;";
+			sql = "SELECT majorName " + "FROM MAJOR;";
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				majorField.getItems().add(rs.getString("majorName"));
 			}
 
 			// populate category
-			sql = "SELECT categoryName FROM CATEGORY;";
+			sql = "SELECT categoryName " + "FROM CATEGORY;";
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				categoryField.getItems().add(rs.getString("categoryName"));
@@ -95,49 +99,114 @@ public class MainController extends Controller {
 		// populate year (hardcoded)
 		yearField.getItems().addAll("FR", "SO", "JR", "SR");
 
+		// set the table view to contain the list of courses from the model
+		view.setItems((ObservableList<Activity>) activities);
+
+		// Initialize the course table with the two columns.
+		activityName.setCellValueFactory(cellData -> cellData.getValue().getName());
+		activityType.setCellValueFactory(cellData -> cellData.getValue().getType());
+
 	}
 
 	@FXML
 	void applyFilter() {
 
-		// check empty fields
-		String title = titleField.getText();
-		String designation = designationField.getSelectionModel().getSelectedItem().toString();
-		String major = majorField.getSelectionModel().getSelectedItem().toString();
-		String year = yearField.getSelectionModel().getSelectedItem().toString();
-		ObservableList<String> category = categoryField.getSelectionModel().getSelectedItems();
+		activities.clear();
 
-		if (title.isEmpty()) {
-			title = "%";
-		}
-		if (designation.isEmpty()) {
-			designation = "%";
-		}
-		if (major.isEmpty()) {
-			major = "%";
-		}
-		if (year.isEmpty()) {
-			year = "%";
-		}
-		if (category.isEmpty()) {
-			category = FXCollections.observableArrayList();
-			category.add("%");
+		// check empty fields
+		String titleFilter = "%";
+		String designationFilter = "";
+		String majorFilter = "";
+		String yearFilter = "";
+		String courseCategoryFilter = "";
+		String projectCategoryFilter = "";
+		ObservableList<String> category = categoryField.getSelectionModel().getSelectedItems();
+		int tableChoice = 1;
+
+		//check empty title
+		if (!titleFilter.isEmpty()) {
+			titleFilter = titleField.getText();
 		}
 		
+		//check empty designation
+		if (designationField.getSelectionModel().getSelectedItem() != null) {
+			designationFilter = "AND designationName = '"+ designationField.getSelectionModel().getSelectedItem() + "' ";
+		}
+		
+		//check empty major
+		if (majorField.getSelectionModel().getSelectedItem() != null) {
+			majorFilter = "AND projectName in (SELECT projectName "
+										    + "FROM MAJOR_REQUIREMENT " 
+										    + "WHERE MAJOR_REQUIREMENT.majorName = '" + majorField.getSelectionModel().getSelectedItem() + "') ";
+		}
+		
+		//check empty year
+		if (yearField.getSelectionModel().getSelectedItem() != null) {
+			yearFilter = "AND projectName in (SELECT projectName " 
+										   + "FROM YEAR_REQUIREMENT " 
+										   + "WHERE YEAR_REQUIREMENT.yearName = '"+ yearField.getSelectionModel().getSelectedItem() + "') ";
+		}
+		
+		//check empty category
+		if (category != null) {
+			for(String s : category) {
+				courseCategoryFilter += "AND courseName in (SELECT courseName " 
+														 + "FROM COURSE_CATEGORY " 
+														 + "WHERE COURSE_CATEGORY.categoryName = '"+ s + "') ";
+				projectCategoryFilter += "AND projectName in (SELECT projectName " 
+														 + "FROM PROJECT_CATEGORY " 
+														 + "WHERE PROJECT_CATEGORY.categoryName = '"+ s + "') ";
+			}
+		}
+		
+		//set table choice
+		if (project.isSelected()) {
+			tableChoice = 0;
+		} else if (course.isSelected()) {
+			tableChoice = 2;
+		}
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			conn = DriverManager.getConnection(DB_URL, "cs4400_Team_1", "MONLSe9e");
 			stmt = conn.createStatement();
 			String sql;
+			ResultSet rs = null;
 
-			// populate designation
-			sql = "SELECT * FROM PROJECT;";
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-
+			// add projects
+			if (tableChoice <= 1) {
+				sql = "SELECT projectName " 
+					+ "FROM PROJECT " 
+					+ "WHERE projectName LIKE '%" + titleFilter + "%' "
+					+ designationFilter
+					+ majorFilter
+					+ yearFilter
+					+ projectCategoryFilter;
+				System.out.println(sql);
+				rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					String name = rs.getString("projectName");
+					activities.add(new Activity(name, "Project"));
+				}
 			}
 
+			// add courses
+			if (tableChoice >= 1) {
+				sql = "SELECT courseName " 
+					+ "FROM COURSE " 
+					+ "WHERE courseName LIKE '%" + titleFilter + "%' "
+					+ designationFilter
+					+ majorFilter
+					+ yearFilter
+					+ courseCategoryFilter + ";";
+				System.out.println(sql);
+				rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					String name = rs.getString("courseName");
+					activities.add(new Activity(name, "Course"));
+				}
+			}
 			rs.close();
 			stmt.close();
 			conn.close();
@@ -160,7 +229,7 @@ public class MainController extends Controller {
 		categoryField.getItems().clear();
 		project.setSelected(true);
 
-		view.getItems().clear();
+		activities.clear();
 
 		initialize();
 
