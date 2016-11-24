@@ -106,6 +106,18 @@ public class MainController extends Controller {
 		activityName.setCellValueFactory(cellData -> cellData.getValue().getName());
 		activityType.setCellValueFactory(cellData -> cellData.getValue().getType());
 
+		// Listen for selection changes and show the activities list when changed.
+        view.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue,
+                        newValue) -> openApplicationDialog(newValue));
+		
+	}
+
+	private void openApplicationDialog(Activity newValue) {
+
+		
+		showDialogAndWait("../view/Application.fxml", "Application");
+		
 	}
 
 	@FXML
