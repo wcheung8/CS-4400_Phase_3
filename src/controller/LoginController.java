@@ -23,6 +23,8 @@ public class LoginController extends Controller {
 
 	@FXML
 	public void handleLoginPressed() {
+		showScreen("../view/MainScreen.fxml", "Main Screen");
+		/*
 		Connection conn = null;
 	    Statement stmt = null;
 	    
@@ -68,6 +70,8 @@ public class LoginController extends Controller {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		*/
 	}
 
 	@FXML
