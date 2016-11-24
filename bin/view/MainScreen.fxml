@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <AnchorPane minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -26,7 +26,7 @@
                         <Font size="41.0" />
                      </font>
                   </Label>
-                  <ImageView blendMode="DARKEN" fitHeight="71.0" fitWidth="84.0" layoutX="68.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true"> <!--onMouseClicked="#handleProfilePressed" -->
+                  <ImageView blendMode="DARKEN" fitHeight="71.0" fitWidth="84.0" layoutX="68.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#handleProfilePressed">
                      <image>
                         <Image url="@profile.png" />
                      </image>
