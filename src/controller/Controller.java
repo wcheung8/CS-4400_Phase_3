@@ -53,6 +53,32 @@ public abstract class Controller {
         Main.stage().setTitle(title);
         return controller;
     }
+    
+    /**
+     * Displays a dialog in the same window.
+     * 
+     * @param path the relative path to the FXML to be loaded
+     * @param height the height of the new window
+     * @param title the title of the new window
+     * @return the controller associated with the dialog
+     */
+    protected Controller showScreen(String path, int height, String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource(path));
+
+            Parent root = loader.load();
+            Stage mainStage = Main.stage();
+            Main.stage().setTitle(title);
+            mainStage.setScene(new Scene(root, 800, height));
+            mainStage.show();
+
+            return loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /**
      * Creates a dialog in a new window but does not show it.

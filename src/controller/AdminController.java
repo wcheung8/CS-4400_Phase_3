@@ -17,12 +17,12 @@ public class AdminController extends Controller {
 	
 	@FXML
 	public void handleViewApplicationReportPressed() {
-		showScreen("../view/AdminPopularProjectReport.fxml", "Application Report");
+		showScreen("../view/AdminApplicationReport.fxml", "Application Report");
 	}
 	
 	@FXML
 	public void handleAddProjectPressed() {
-		showScreen("../view/AdminAddProject.fxml", "Add Project");
+		showScreen("../view/AdminAddProject.fxml", 800, "Add Project");
 	}
 	
 	@FXML
