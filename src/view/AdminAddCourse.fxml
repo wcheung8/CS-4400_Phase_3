@@ -8,32 +8,24 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
    <children>
-      <ScrollPane layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="800.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0"> <!-- manipulate this when doing logic -->
-               <children>
-               	  <Label alignment="center" layoutX="278.0" layoutY="31.0" text="Add a Course" textFill="#c7b877">
-	         		<font>
-	           		  <Font size="41.0" />
-	         		</font></Label>
-                  <Text layoutX="125.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Number:" />
-			      <TextField layoutX="245.0" layoutY="105.0" prefHeight="31.0" prefWidth="316.0" />
-			      <Text layoutX="141.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Name:" />
-			      <Text layoutX="168.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructor:" />
-			      <Text layoutX="167.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
-			      <Text layoutX="151.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
-			      <Text layoutX="71.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated # of Students:" />
-			      <TextField layoutX="245.0" layoutY="142.0" prefHeight="31.0" prefWidth="316.0" />
-			      <TextField layoutX="244.0" layoutY="182.0" prefHeight="31.0" prefWidth="316.0" />
-			      <TextField layoutX="242.0" layoutY="307.0" prefHeight="31.0" prefWidth="316.0" />
-			      <ChoiceBox layoutX="242.0" layoutY="223.0" prefHeight="31.0" prefWidth="316.0" />
-			      <ChoiceBox layoutX="242.0" layoutY="263.0" prefHeight="31.0" prefWidth="316.0" />
-            	  <Button layoutX="372.0" layoutY="369.0" mnemonicParsing="false" text="Submit" />
-            	  <Button layoutX="289.0" layoutY="369.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
-                  <Hyperlink layoutX="586.0" layoutY="264.0" text="Add a new category" />
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
+   		<Label alignment="center" layoutX="278.0" layoutY="31.0" text="Add a Course" textFill="#c7b877">
+			<font>
+				<Font size="41.0" />
+			</font>
+		</Label>
+		<Text layoutX="125.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Number:" />
+		<TextField layoutX="242.0" layoutY="105.0" prefHeight="31.0" prefWidth="316.0" />
+		<Text layoutX="141.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Name:" />
+		<Text layoutX="168.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructor:" />
+		<Text layoutX="167.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
+		<Text layoutX="151.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
+		<Text layoutX="73.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated # of Students:" />
+		<TextField layoutX="242.0" layoutY="142.0" prefHeight="31.0" prefWidth="316.0" />
+		<TextField layoutX="242.0" layoutY="182.0" prefHeight="31.0" prefWidth="316.0" />
+		<TextField layoutX="242.0" layoutY="435.0" prefHeight="31.0" prefWidth="316.0" />
+		<ChoiceBox layoutX="242.0" layoutY="223.0" prefHeight="31.0" prefWidth="316.0" />
+		<Button layoutX="410.0" layoutY="485.0" mnemonicParsing="false" text="Submit" />
+		<Button layoutX="327.0" layoutY="485.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
+      <ListView layoutX="242.0" layoutY="269.0" prefHeight="149.0" prefWidth="316.0" />
    </children>
 </AnchorPane>
