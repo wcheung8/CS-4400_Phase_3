@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private static Stage mainStage;
+    private static String currentUsername;
+    private static boolean isAdmin;
 
     /**
      * @return the single instance of the main stage.
