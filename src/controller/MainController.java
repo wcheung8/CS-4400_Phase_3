@@ -142,30 +142,30 @@ public class MainController extends Controller {
 		
 		//check empty designation
 		if (designationField.getSelectionModel().getSelectedItem() != null) {
-			designationFilter = "AND designationName = '"+ designationField.getSelectionModel().getSelectedItem() + "' ";
+			designationFilter = "OR designationName = '"+ designationField.getSelectionModel().getSelectedItem() + "' ";
 		}
 		
 		//check empty major
 		if (majorField.getSelectionModel().getSelectedItem() != null) {
-			majorFilter = "AND projectName in (SELECT projectName "
+			majorFilter = "OR projectName in (SELECT projectName "
 										    + "FROM MAJOR_REQUIREMENT " 
 										    + "WHERE MAJOR_REQUIREMENT.majorName = '" + majorField.getSelectionModel().getSelectedItem() + "') ";
 		}
 		
 		//check empty year
 		if (yearField.getSelectionModel().getSelectedItem() != null) {
-			yearFilter = "AND projectName in (SELECT projectName " 
+			yearFilter = "OR projectName in (SELECT projectName " 
 										   + "FROM YEAR_REQUIREMENT " 
-										   + "WHERE YEAR_REQUIREMENT.yearName = '"+ yearField.getSelectionModel().getSelectedItem() + "') ";
+										   + "WHERE YEAR_REQUIREMENT.year = '"+ yearField.getSelectionModel().getSelectedItem() + "') ";
 		}
 		
 		//check empty category
 		if (category != null) {
 			for(String s : category) {
-				courseCategoryFilter += "AND courseName in (SELECT courseName " 
+				courseCategoryFilter += "OR courseName in (SELECT courseName " 
 														 + "FROM COURSE_CATEGORY " 
 														 + "WHERE COURSE_CATEGORY.categoryName = '"+ s + "') ";
-				projectCategoryFilter += "AND projectName in (SELECT projectName " 
+				projectCategoryFilter += "OR projectName in (SELECT projectName " 
 														 + "FROM PROJECT_CATEGORY " 
 														 + "WHERE PROJECT_CATEGORY.categoryName = '"+ s + "') ";
 			}
@@ -209,8 +209,6 @@ public class MainController extends Controller {
 					+ "FROM COURSE " 
 					+ "WHERE courseName LIKE '%" + titleFilter + "%' "
 					+ designationFilter
-					+ majorFilter
-					+ yearFilter
 					+ courseCategoryFilter + ";";
 				System.out.println(sql);
 				rs = stmt.executeQuery(sql);

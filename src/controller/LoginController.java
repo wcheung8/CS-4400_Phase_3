@@ -29,48 +29,50 @@ public class LoginController extends Controller {
 		String username = userField.getText();
 		String password = passwordField.getText();
 
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
+		if (username.isEmpty() || password.isEmpty()) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.initOwner(Main.stage());
+			alert.setTitle("Invalid Login");
+			alert.setHeaderText("Invalid Login");
+			alert.setContentText("Username or password not filled.");
+			alert.show();
+		} else {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
 
-			conn = DriverManager.getConnection(DB_URL, "cs4400_Team_1", "MONLSe9e");
-			stmt = conn.createStatement();
-			String sql;
+				conn = DriverManager.getConnection(DB_URL, "cs4400_Team_1", "MONLSe9e");
+				stmt = conn.createStatement();
+				String sql;
 
-			sql = "SELECT * FROM USER where username = '" + username + "';";
-			ResultSet rs = stmt.executeQuery(sql);
+				sql = "SELECT * FROM USER where username = '" + username + "';";
+				ResultSet rs = stmt.executeQuery(sql);
 
-			rs.next();
+				
 
-			if (username.isEmpty() || password.isEmpty()) {
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.initOwner(Main.stage());
-				alert.setTitle("Invalid Login");
-				alert.setHeaderText("Invalid Login");
-				alert.setContentText("Username or password not filled.");
-				alert.show();
-			} else if (password.equals(rs.getString("password"))) {
-				if (rs.getInt("isAdmin") == 1) {
-					showScreen("../view/AdminMainScreen.fxml", "Main Screen");
+				if (rs.next() && password.equals(rs.getString("password"))) {
+					if (rs.getInt("isAdmin") == 1) {
+						showScreen("../view/AdminMainScreen.fxml", "Main Screen");
+					} else {
+						showScreen("../view/MainScreen.fxml", "Main Screen");
+					}
 				} else {
-					showScreen("../view/MainScreen.fxml", "Main Screen");
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.initOwner(Main.stage());
+					alert.setTitle("User Not Found");
+					alert.setHeaderText("User Not Found");
+					alert.setContentText("Username or password incorrect.");
+					alert.show();
 				}
-			} else {
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.initOwner(Main.stage());
-				alert.setTitle("User Not Found");
-				alert.setHeaderText("User Not Found");
-				alert.setContentText("Username or password incorrect.");
-				alert.show();
+
+				rs.close();
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-
-			rs.close();
-			stmt.close();
-			conn.close();
-
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
 	}
