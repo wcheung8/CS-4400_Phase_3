@@ -16,7 +16,7 @@ public class Application {
 		this.status.set(status);
 	}
 
-	public StringProperty getProject() {
+	public StringProperty projectProperty() {
 		return project;
 	}
 
@@ -24,7 +24,7 @@ public class Application {
 		this.project.set(project);
 	}
 	
-	public StringProperty getMajor() {
+	public StringProperty majorProperty() {
 		return major;
 	}
 
@@ -32,7 +32,7 @@ public class Application {
 		this.major.set(major);
 	}
 	
-	public StringProperty getYear() {
+	public StringProperty yearProperty() {
 		return year;
 	}
 
@@ -40,7 +40,7 @@ public class Application {
 		this.year.set(year);
 	}
 	
-	public StringProperty getStatus() {
+	public StringProperty statusProperty() {
 		return status;
 	}
 
