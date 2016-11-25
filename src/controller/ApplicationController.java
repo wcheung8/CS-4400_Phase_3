@@ -3,12 +3,10 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.sql.*;
+import java.util.Calendar;
 
 import fxapp.Main;
 
@@ -50,30 +48,22 @@ public class ApplicationController extends Controller {
 			stmt = conn.createStatement();
 			String sql;
 
-			sql = "SELECT isAdmin FROM USER";
-			ResultSet rs = stmt.executeQuery(sql);
+			sql = "INSERT INTO APPLICATION (username, projectName, date) "
+				+ "VALUES ('" + Main.currentUsername + "','" + Main.selectedActivity.getName().get() + "', '" + new java.sql.Date(Calendar.getInstance().getTime().getTime()) + "');";
+			int rs = stmt.executeUpdate(sql);
 
-			if (rs.next()) {
-				if (rs.getInt("isAdmin") == 1) {
-					showScreen("../view/AdminMainScreen.fxml", "Main Screen");
-				} else {
-					showScreen("../view/MainScreen.fxml", "Main Screen");
-				}
-			} else {
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.initOwner(Main.stage());
-				alert.setTitle("User Not Found");
-				alert.setHeaderText("User Not Found");
-				alert.setContentText("Username or password incorrect.");
-				alert.show();
-			}
-
-			rs.close();
 			stmt.close();
 			conn.close();
 
 		} catch (SQLException se) {
-			se.printStackTrace();
+			if (se.getMessage().contains("Duplicate")) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.initOwner(Main.stage());
+				alert.setTitle("You've already applied!");
+				alert.setHeaderText("You've already applied!");
+				alert.setContentText("Cannot apply twice to a project.");
+				alert.show();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
