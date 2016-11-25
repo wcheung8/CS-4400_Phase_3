@@ -22,7 +22,7 @@ public class LoginController extends Controller {
 	PasswordField passwordField;
 
 	@FXML
-	public void handleLoginPressed() {
+	private void handleLoginPressed() {
 		Connection conn = null;
 		Statement stmt = null;
 
@@ -79,7 +79,7 @@ public class LoginController extends Controller {
 	}
 
 	@FXML
-	public void handleRegisterPressed() {
+	private void handleRegisterPressed() {
 		showScreen("../view/RegisterScreen.fxml", "Register");
 	}
 }

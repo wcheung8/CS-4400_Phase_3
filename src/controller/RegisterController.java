@@ -76,9 +76,9 @@ public class RegisterController extends Controller {
 				if (se.getMessage().contains("Duplicate")) {
 					Alert alert = new Alert(Alert.AlertType.ERROR);
 					alert.initOwner(Main.stage());
-					alert.setTitle("User already exists!");
-					alert.setHeaderText("User already exists!");
-					alert.setContentText("Cannot insert duplicate user.");
+					alert.setTitle("Username/email already exists!");
+					alert.setHeaderText("Username/email already exists!");
+					alert.setContentText("Cannot insert duplicate username/email.");
 					alert.show();
 				}
 			} catch (Exception e) {

@@ -2,8 +2,11 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import java.sql.*;
 
@@ -16,69 +19,69 @@ public class ApplicationController extends Controller {
 	static final String DB_URL = "jdbc:mysql://academic-mysql.cc.gatech.edu/cs4400_Team_1";
 
 	@FXML
-	TextField userField;
+	Text designation;
+	@FXML
+	Text category;
+	@FXML
+	Text requirements;
+	@FXML
+	Text estNum;
+	@FXML
+	Text advisor;
+	@FXML
+	Label description;
+	@FXML
+	Label title;
 
 	@FXML
-	PasswordField passwordField;
-
+	private void initialize() {
+		title.setText(Main.selectedActivity.getName().get());
+	}
+	
 	@FXML
-	public void handleLoginPressed() {
+	private void handleApplyPressed() {
 		Connection conn = null;
 		Statement stmt = null;
 
-		String username = userField.getText();
-		String password = passwordField.getText();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
 
-		if (username.isEmpty() || password.isEmpty()) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.initOwner(Main.stage());
-			alert.setTitle("Invalid Login");
-			alert.setHeaderText("Invalid Login");
-			alert.setContentText("Username or password not filled.");
-			alert.show();
-		} else {
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, "cs4400_Team_1", "MONLSe9e");
+			stmt = conn.createStatement();
+			String sql;
 
-				conn = DriverManager.getConnection(DB_URL, "cs4400_Team_1", "MONLSe9e");
-				stmt = conn.createStatement();
-				String sql;
+			sql = "SELECT isAdmin FROM USER";
+			ResultSet rs = stmt.executeQuery(sql);
 
-				sql = "SELECT * FROM USER where username = '" + username + "';";
-				ResultSet rs = stmt.executeQuery(sql);
-
-				
-
-				if (rs.next() && password.equals(rs.getString("password"))) {
-					if (rs.getInt("isAdmin") == 1) {
-						showScreen("../view/AdminMainScreen.fxml", "Main Screen");
-					} else {
-						showScreen("../view/MainScreen.fxml", "Main Screen");
-					}
+			if (rs.next()) {
+				if (rs.getInt("isAdmin") == 1) {
+					showScreen("../view/AdminMainScreen.fxml", "Main Screen");
 				} else {
-					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.initOwner(Main.stage());
-					alert.setTitle("User Not Found");
-					alert.setHeaderText("User Not Found");
-					alert.setContentText("Username or password incorrect.");
-					alert.show();
+					showScreen("../view/MainScreen.fxml", "Main Screen");
 				}
-
-				rs.close();
-				stmt.close();
-				conn.close();
-
-			} catch (SQLException se) {
-				se.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
+			} else {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.initOwner(Main.stage());
+				alert.setTitle("User Not Found");
+				alert.setHeaderText("User Not Found");
+				alert.setContentText("Username or password incorrect.");
+				alert.show();
 			}
+
+			rs.close();
+			stmt.close();
+			conn.close();
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
 
 	@FXML
-	public void handleBackPressed() {
+	private void handleBackPressed() {
 		showScreen("../view/MainScreen.fxml", "Main Screen");
 	}
 }
