@@ -68,21 +68,24 @@ public class MainController extends Controller {
 			String sql;
 
 			// populate designation
-			sql = "SELECT designationName " + "FROM DESIGNATION;";
+			sql = "SELECT designationName " 
+				+ "FROM DESIGNATION;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				designationField.getItems().add(rs.getString("designationName"));
 			}
 
 			// populate majors
-			sql = "SELECT majorName " + "FROM MAJOR;";
+			sql = "SELECT majorName " 
+				+ "FROM MAJOR;";
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				majorField.getItems().add(rs.getString("majorName"));
 			}
 
 			// populate category
-			sql = "SELECT categoryName " + "FROM CATEGORY;";
+			sql = "SELECT categoryName " 
+				+ "FROM CATEGORY;";
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				categoryField.getItems().add(rs.getString("categoryName"));
