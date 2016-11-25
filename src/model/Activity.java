@@ -18,7 +18,6 @@ public class Activity {
 
 	public void setName(String name) {
 		this.name.set(name);
-		;
 	}
 
 	public StringProperty getType() {
@@ -27,7 +26,6 @@ public class Activity {
 
 	public void setType(String type) {
 		this.type.set(type);
-		;
 	}
 
 }
