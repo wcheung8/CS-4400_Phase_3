@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,6 +33,7 @@ public abstract class Controller {
             Parent root = loader.load();
             Stage mainStage = Main.stage();
             mainStage.setScene(new Scene(root, 800, 600));
+            mainStage.getIcons().add(new Image("icon.png"));
             mainStage.show();
 
             return loader.getController();
