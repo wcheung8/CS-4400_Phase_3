@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -30,12 +29,7 @@ public class LoginController extends Controller {
 		String password = passwordField.getText();
 
 		if (username.isEmpty() || password.isEmpty()) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.initOwner(Main.stage());
-			alert.setTitle("Invalid Login");
-			alert.setHeaderText("Invalid Login");
-			alert.setContentText("Username or password not filled.");
-			alert.show();
+			alert("Invalid Login", "Username or password not filled.");
 		} else {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -44,12 +38,10 @@ public class LoginController extends Controller {
 				stmt = conn.createStatement();
 				String sql;
 
-				sql = "SELECT * FROM USER where username = '" + username + "';";
+				sql = "SELECT isAdmin FROM USER where username = '" + username + "' AND password ='" + password + "';";
 				ResultSet rs = stmt.executeQuery(sql);
 
-				
-
-				if (rs.next() && password.equals(rs.getString("password"))) {
+				if (rs.next()) {
 					Main.currentUsername = username;
 					if (rs.getInt("isAdmin") == 1) {
 						showScreen("../view/AdminMainScreen.fxml", "Main Screen");
@@ -57,12 +49,7 @@ public class LoginController extends Controller {
 						showScreen("../view/MainScreen.fxml", "Main Screen");
 					}
 				} else {
-					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.initOwner(Main.stage());
-					alert.setTitle("User Not Found");
-					alert.setHeaderText("User Not Found");
-					alert.setContentText("Username or password incorrect.");
-					alert.show();
+					alert("User Not Found", "Username or password incorrect.");
 				}
 
 				rs.close();

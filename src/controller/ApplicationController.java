@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
@@ -50,19 +49,16 @@ public class ApplicationController extends Controller {
 
 			sql = "INSERT INTO APPLICATION (username, projectName, date) "
 				+ "VALUES ('" + Main.currentUsername + "','" + Main.selectedActivity.getName().get() + "', '" + new java.sql.Date(Calendar.getInstance().getTime().getTime()) + "');";
-			int rs = stmt.executeUpdate(sql);
+			stmt.executeUpdate(sql);
 
 			stmt.close();
 			conn.close();
+			
+			alert("Application Success!","You have successfully applied.");
 
 		} catch (SQLException se) {
 			if (se.getMessage().contains("Duplicate")) {
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.initOwner(Main.stage());
-				alert.setTitle("You've already applied!");
-				alert.setHeaderText("You've already applied!");
-				alert.setContentText("Cannot apply twice to a project.");
-				alert.show();
+				alert("You've already applied!","Cannot apply twice to a project.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -142,6 +143,16 @@ public abstract class Controller {
         DialogController controller = createDialog(path);
         controller.dialogStage.showAndWait();
         return controller;
+    }
+    
+    protected Alert alert(String header, String message) {
+    	Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.initOwner(Main.stage());
+		alert.setTitle(header);
+		alert.setHeaderText(header);
+		alert.setContentText(message);
+		alert.show();
+		return alert;
     }
 
     /**
