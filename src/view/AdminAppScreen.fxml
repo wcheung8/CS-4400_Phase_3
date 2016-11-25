@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminViewAppsController">
    <children>
       <Label layoutX="297.0" layoutY="51.0" text="Application" textFill="#c7b877">
          <font>
             <Font size="41.0" />
          </font>
       </Label>
-      <TableView layoutX="34.0" layoutY="130.0" prefHeight="359.0" prefWidth="730.0">
+      <TableView fx:id="tableView" layoutX="34.0" layoutY="130.0" prefHeight="359.0" prefWidth="730.0">
         <columns>
-          <TableColumn prefWidth="307.0" text="Project" />
-          <TableColumn minWidth="0.0" prefWidth="176.0" text="Applicant Major" />
-          <TableColumn prefWidth="142.0" text="Applicant Year" />
-          <TableColumn prefWidth="104.0" text="Status" />
+          <TableColumn fx:id="projectCol" prefWidth="307.0" text="Project" />
+          <TableColumn fx:id="majorCol" minWidth="0.0" prefWidth="176.0" text="Applicant Major" />
+          <TableColumn fx:id="yearCol" prefWidth="142.0" text="Applicant Year" />
+          <TableColumn fx:id="statusCol" prefWidth="104.0" text="Status" />
         </columns>
       </TableView>
       <Button layoutX="59.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />

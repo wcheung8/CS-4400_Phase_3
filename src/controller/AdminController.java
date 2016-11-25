@@ -1,14 +1,25 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.Application;
+import java.sql.*;
 
 public class AdminController extends Controller {
 	
+	 
 	// For admin main screen
 	@FXML
 	public void handleViewApplicationsPressed() {
+		
 		showScreen("../view/AdminAppScreen.fxml", "View Applications");
+		
 	}
+	
 	
 	@FXML
 	public void handleViewPopularProjectPressed() {
