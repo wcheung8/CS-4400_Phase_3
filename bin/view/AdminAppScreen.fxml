@@ -13,12 +13,12 @@
             <Font size="41.0" />
          </font>
       </Label>
-      <TableView layoutX="34.0" layoutY="130.0" prefHeight="359.0" prefWidth="730.0">
+      <TableView fx:id="tableView" layoutX="34.0" layoutY="130.0" prefHeight="359.0" prefWidth="730.0">
         <columns>
-          <TableColumn prefWidth="307.0" text="Project" />
-          <TableColumn minWidth="0.0" prefWidth="176.0" text="Applicant Major" />
-          <TableColumn prefWidth="142.0" text="Applicant Year" />
-          <TableColumn prefWidth="104.0" text="Status" />
+          <TableColumn fx:id="project" prefWidth="307.0" text="Project" />
+          <TableColumn fx:id="major" minWidth="0.0" prefWidth="176.0" text="Applicant Major" />
+          <TableColumn fx:id="year" prefWidth="142.0" text="Applicant Year" />
+          <TableColumn fx:id="status" prefWidth="104.0" text="Status" />
         </columns>
       </TableView>
       <Button layoutX="59.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
