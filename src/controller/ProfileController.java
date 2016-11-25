@@ -128,7 +128,7 @@ public class ProfileController extends Controller {
 			}
 
 			sql = "UPDATE USER SET majorName=" + updatedMajor + ", year=" + updatedyear + " WHERE username='" + Main.currentUsername + "';";
-			System.out.println(sql);
+
 			stmt.executeUpdate(sql);
 			stmt.close();
 			conn.close();
