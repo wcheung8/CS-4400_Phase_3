@@ -18,7 +18,7 @@
       <Text layoutX="224.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major" />
       <Text layoutX="224.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year" />
       <Text layoutX="224.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
-      <Text fx:id="departmentField" layoutX="452.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DepartmentName" />
+      <Text fx:id="departmentField" layoutX="330.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DepartmentName" textAlignment="RIGHT" wrappingWidth="242.00000166893005" />
       <ComboBox fx:id="yearField" layoutX="330.0" layoutY="233.0" onAction="#update" prefHeight="31.0" prefWidth="242.0" />
       <ComboBox fx:id="majorField" layoutX="330.0" layoutY="188.0" onAction="#update" prefHeight="31.0" prefWidth="242.0" />
    </children>

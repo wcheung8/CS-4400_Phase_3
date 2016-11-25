@@ -35,6 +35,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("../view/LoginScreen.fxml"));
         stage.getIcons().add(new Image("icon.png"));
+        stage().setTitle("Login");
         Parent root = loader.load();
         stage.setScene(new Scene(root, 800, 600));
         stage.show();
