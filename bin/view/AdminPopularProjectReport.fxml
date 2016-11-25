@@ -6,17 +6,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminViewPopularProjectController">
    <children>
       <Label layoutX="261.0" layoutY="55.0" text="Popular Project" textFill="#c7b877">
          <font>
             <Font size="41.0" />
          </font>
       </Label>
-      <TableView layoutX="34.0" layoutY="130.0" prefHeight="359.0" prefWidth="730.0">
+      <TableView fx:id="view" layoutX="34.0" layoutY="130.0" prefHeight="359.0" prefWidth="730.0">
         <columns>
-          <TableColumn prefWidth="524.0" text="Project" />
-          <TableColumn minWidth="0.0" prefWidth="205.0" text="Number of Applicants" />
+          <TableColumn fx:id="projectCol" prefWidth="524.0" text="Project" />
+          <TableColumn fx:id="numApplicantsCol" minWidth="0.0" prefWidth="205.0" text="Number of Applicants" />
         </columns>
       </TableView>
       <Button layoutX="59.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
