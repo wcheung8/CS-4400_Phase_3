@@ -53,6 +53,7 @@ public class AdminViewPopularProjectController extends Controller {
 				String projectName = rs.getString("projectName");
 				Integer numApplications = ((Number) rs.getObject("COUNT(*)")).intValue();
 				projects.add(new Project(projectName, numApplications));
+
 			}
 
 			rs.close();
