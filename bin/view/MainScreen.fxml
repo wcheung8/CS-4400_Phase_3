@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -16,7 +22,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <AnchorPane minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -54,6 +60,7 @@
                   <Label layoutX="397.0" layoutY="113.0" text="Category" />
                   <RadioButton fx:id="course" layoutX="541.0" layoutY="213.0" mnemonicParsing="false" text="Course" toggleGroup="$type" />
                   <RadioButton fx:id="both" layoutX="642.0" layoutY="213.0" mnemonicParsing="false" text="Both" toggleGroup="$type" />
+                  <Button layoutX="725.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleLogoutPressed" text="Logout" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="6.0" layoutY="326.0" prefHeight="277.0" prefWidth="791.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="326.0">

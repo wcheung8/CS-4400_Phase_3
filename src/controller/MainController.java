@@ -254,5 +254,10 @@ public class MainController extends Controller {
 	void handleProfilePressed() {
 		showScreen("../view/ProfileScreen.fxml", "Profile");
 	}
+	
+	@FXML
+	public void handleLogoutPressed() {
+		showScreen("../view/LoginScreen.fxml", "Login");
+	}
 
 }
