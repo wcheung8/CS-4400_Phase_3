@@ -30,7 +30,6 @@ public class AdminController extends Controller {
 		showScreen("../view/AdminAddCourse.fxml", "Add Course");
 	}
 
-	// For view applications, maybe split into separate controller later
 	@FXML
 	public void handleBackPressed() {
 		showScreen("../view/AdminMainScreen.fxml", "Main Screen");
