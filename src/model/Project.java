@@ -12,7 +12,6 @@ public class Project {
 	public Project(String name, int numApplicants) {
 		this.name.set(name);
 		this.numApplicants.set(numApplicants);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public StringProperty getProjectName() {

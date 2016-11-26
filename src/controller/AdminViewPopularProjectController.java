@@ -3,7 +3,6 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Project;
@@ -25,16 +24,11 @@ public class AdminViewPopularProjectController extends Controller {
 	Connection conn = null;
 	Statement stmt = null;
 
-	ObservableList<Project> applications = FXCollections.observableArrayList();
+	ObservableList<Project> projects = FXCollections.observableArrayList();
 
 	public void initialize() {
-
-		// set category to be multiselect
-		// view.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
 		// set proper data sets for table
 		projectCol.setCellValueFactory(cellData -> cellData.getValue().getProjectName());
-		// MAY NEED TO CHANGE TO STRING: JL
 		numApplicantsCol.setCellValueFactory(cellData -> cellData.getValue().getNumApplicants().asObject());
 		view.setItems((ObservableList<Project>) getData());
 	}
@@ -43,7 +37,7 @@ public class AdminViewPopularProjectController extends Controller {
 	public ObservableList<Project> getData() {
 
 		// flush old data
-		applications.clear();
+		projects.clear();
 
 		// populate data with applications
 		try {
@@ -57,10 +51,8 @@ public class AdminViewPopularProjectController extends Controller {
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				String projectName = rs.getString("projectName");
-				System.out.println(projectName);
 				Integer numApplications = ((Number) rs.getObject("COUNT(*)")).intValue();
-				System.out.println(numApplications);
-				applications.add(new Project(projectName, numApplications));
+				projects.add(new Project(projectName, numApplications));
 			}
 
 			rs.close();
@@ -72,7 +64,7 @@ public class AdminViewPopularProjectController extends Controller {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return applications;
+		return projects;
 
 	}
 
