@@ -156,26 +156,26 @@ public class MainController extends Controller {
 		
 		//check empty designation
 		if (designationField.getSelectionModel().getSelectedItem() != null) {
-			designationFilter = "OR designationName = '"+ designationField.getSelectionModel().getSelectedItem() + "' ";
+			designationFilter = "AND designationName = '"+ designationField.getSelectionModel().getSelectedItem() + "' ";
 		}
 		
 		//check empty major
 		if (majorField.getSelectionModel().getSelectedItem() != null) {
 		    noRequirements = false;
-			majorFilter = "OR projectName in (SELECT projectName "
+			majorFilter = "AND (projectName in (SELECT projectName "
 										    + "FROM MAJOR_REQUIREMENT " 
 										    + "WHERE MAJOR_REQUIREMENT.majorName = '" + majorField.getSelectionModel().getSelectedItem() + "') ";
 			departmentFilter = "OR projectName in (SELECT projectName "
                                                 + "FROM DEPARTMENT_REQUIREMENT " 
                                                 + "WHERE DEPARTMENT_REQUIREMENT.departmentName in (SELECT departmentName "
                                                                                                 + "FROM MAJOR "
-                                                                                                + "WHERE majorName = '" + majorField.getSelectionModel().getSelectedItem() + "') ) ";
+                                                                                                + "WHERE majorName = '" + majorField.getSelectionModel().getSelectedItem() + "') )) ";
 		}
 		
 		//check empty year
 		if (yearField.getSelectionModel().getSelectedItem() != null) {
 		    noRequirements = false;
-		    yearFilter = "OR projectName in (SELECT projectName " 
+		    yearFilter = "AND projectName in (SELECT projectName " 
 										   + "FROM YEAR_REQUIREMENT " 
 										   + "WHERE YEAR_REQUIREMENT.year = '"+ yearField.getSelectionModel().getSelectedItem() + "') ";
 		}
@@ -183,10 +183,10 @@ public class MainController extends Controller {
 		//check empty category
 		if (category != null) {
 			for(String s : category) {
-				courseCategoryFilter += "OR courseName in (SELECT courseName " 
+				courseCategoryFilter += "AND courseName in (SELECT courseName " 
 														 + "FROM COURSE_CATEGORY " 
 														 + "WHERE COURSE_CATEGORY.categoryName = '"+ s + "') ";
-				projectCategoryFilter += "OR projectName in (SELECT projectName " 
+				projectCategoryFilter += "AND projectName in (SELECT projectName " 
 														 + "FROM PROJECT_CATEGORY " 
 														 + "WHERE PROJECT_CATEGORY.categoryName = '"+ s + "') ";
 			}

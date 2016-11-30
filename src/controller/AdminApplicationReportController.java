@@ -73,11 +73,8 @@ public class AdminApplicationReportController extends Controller {
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				String projectName = rs.getString("projectName");
-				System.out.println("projectName " + projectName);
 				Integer numApplications =  rs.getInt("allCount");
-				System.out.println("numApplications: " + numApplications);
 				String acceptRate =  String.valueOf(rs.getInt("acceptRate")) + "%";
-				System.out.println("acceptRate " + acceptRate);
 				
 				sql = "SELECT projectName, majorName, COUNT(majorName) FROM USER NATURAL JOIN APPLICATION GROUP BY majorName HAVING projectName = '" + projectName + "' ORDER BY COUNT(majorName) DESC LIMIT 3;";
 				ResultSet rs2 = stmt2.executeQuery(sql);
@@ -89,8 +86,7 @@ public class AdminApplicationReportController extends Controller {
 				}
 				if (topMajors.length() != 0) {
 					topMajors = topMajors.substring(0, topMajors.length() - 1);
-				}	
-				System.out.println("topMajors " + topMajors);
+				}
 				rs2.close();
 				
 				applications.add(new ApplicationReport(projectName, numApplications, acceptRate, topMajors));

@@ -224,7 +224,7 @@ public class ApplicationController extends Controller {
                                           + "WHERE projectName = '" + Main.selectedActivity.getName().get() + "')) OR "
                              + "year in (SELECT year "
                                       + "FROM YEAR_REQUIREMENT "
-                                      + "WHERE projectName = 'selectedProject')); ";
+                                      + "WHERE projectName = '" + Main.selectedActivity.getName().get() + "')); ";
                 rs = stmt.executeQuery(sql);
                 
                 if(rs.next()) {

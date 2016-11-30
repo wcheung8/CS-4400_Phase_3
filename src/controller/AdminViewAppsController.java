@@ -118,7 +118,7 @@ public class AdminViewAppsController extends Controller {
 				String sql = "UPDATE APPLICATION SET status=1 "
 						   + "WHERE username='" + a.getName().get() + 
 						   "' AND projectName = '" + a.getProject().get() + "';";
-				System.out.println(sql);
+
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();
@@ -146,7 +146,7 @@ public class AdminViewAppsController extends Controller {
 		}
 
 		// update each selected application
-		for (Application a : applications) {
+		for (Application a : selected) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 
