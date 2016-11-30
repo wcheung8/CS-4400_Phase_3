@@ -134,12 +134,21 @@ public class MainController extends Controller {
 		String titleFilter = "%";
 		String designationFilter = "";
 		String majorFilter = "";
+		String departmentFilter = "";
 		String yearFilter = "";
 		String courseCategoryFilter = "";
 		String projectCategoryFilter = "";
 		ObservableList<String> category = categoryField.getSelectionModel().getSelectedItems();
 		int tableChoice = 1;
+		boolean noRequirements = true;
 
+		//set table choice
+        if (project.isSelected()) {
+            tableChoice = 0;
+        } else if (course.isSelected()) {
+            tableChoice = 2;
+        }
+		
 		//check empty title
 		if (!titleFilter.isEmpty()) {
 			titleFilter = titleField.getText();
@@ -152,14 +161,21 @@ public class MainController extends Controller {
 		
 		//check empty major
 		if (majorField.getSelectionModel().getSelectedItem() != null) {
+		    noRequirements = false;
 			majorFilter = "OR projectName in (SELECT projectName "
 										    + "FROM MAJOR_REQUIREMENT " 
 										    + "WHERE MAJOR_REQUIREMENT.majorName = '" + majorField.getSelectionModel().getSelectedItem() + "') ";
+			departmentFilter = "OR projectName in (SELECT projectName "
+                                                + "FROM DEPARTMENT_REQUIREMENT " 
+                                                + "WHERE DEPARTMENT_REQUIREMENT.departmentName in (SELECT departmentName "
+                                                                                                + "FROM MAJOR "
+                                                                                                + "WHERE majorName = '" + majorField.getSelectionModel().getSelectedItem() + "') ) ";
 		}
 		
 		//check empty year
 		if (yearField.getSelectionModel().getSelectedItem() != null) {
-			yearFilter = "OR projectName in (SELECT projectName " 
+		    noRequirements = false;
+		    yearFilter = "OR projectName in (SELECT projectName " 
 										   + "FROM YEAR_REQUIREMENT " 
 										   + "WHERE YEAR_REQUIREMENT.year = '"+ yearField.getSelectionModel().getSelectedItem() + "') ";
 		}
@@ -176,12 +192,7 @@ public class MainController extends Controller {
 			}
 		}
 		
-		//set table choice
-		if (project.isSelected()) {
-			tableChoice = 0;
-		} else if (course.isSelected()) {
-			tableChoice = 2;
-		}
+		
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -198,9 +209,10 @@ public class MainController extends Controller {
 					+ "WHERE projectName LIKE '%" + titleFilter + "%' "
 					+ designationFilter
 					+ majorFilter
+					+ departmentFilter
 					+ yearFilter
 					+ projectCategoryFilter;
-				System.out.println(sql);
+
 				rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 					String name = rs.getString("projectName");
@@ -209,13 +221,13 @@ public class MainController extends Controller {
 			}
 
 			// add courses
-			if (tableChoice >= 1) {
+			if (tableChoice >= 1 && noRequirements) {
 				sql = "SELECT courseName " 
 					+ "FROM COURSE " 
 					+ "WHERE courseName LIKE '%" + titleFilter + "%' "
 					+ designationFilter
 					+ courseCategoryFilter + ";";
-				System.out.println(sql);
+				
 				rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 					String name = rs.getString("courseName");

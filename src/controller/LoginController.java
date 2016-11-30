@@ -38,7 +38,7 @@ public class LoginController extends Controller {
 				stmt = conn.createStatement();
 				String sql;
 
-				sql = "SELECT isAdmin FROM USER where username = '" + username + "' AND password ='" + password + "';";
+				sql = "SELECT isAdmin FROM USER WHERE username = '" + username + "' AND password ='" + password + "';";
 				ResultSet rs = stmt.executeQuery(sql);
 
 				if (rs.next()) {

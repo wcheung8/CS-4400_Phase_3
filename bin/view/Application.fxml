@@ -59,7 +59,7 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-            		<Button layoutX="424.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleApplyPressed" text="Apply" />
+            		<Button fx:id="applyButton" layoutX="424.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleApplyPressed" text="Apply" />
             		<Button layoutX="322.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
                </children>
                <VBox.margin>
