@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminApplicationReportController">
+   <children>
+      <Label layoutX="382.0" layoutY="40.0" text="Me" textFill="#c7b877">
+         <font>
+            <Font size="41.0" />
+         </font>
+      </Label>
+      <Button layoutX="388.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
+      <Hyperlink layoutX="346.0" layoutY="144.0" text="Edit Profile">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="320.0" layoutY="224.0" text="My Application">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Hyperlink>
+   </children>
+</Pane>
