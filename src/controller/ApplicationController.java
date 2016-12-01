@@ -105,7 +105,8 @@ public class ApplicationController extends Controller {
 
         content.getChildren().remove(descriptionPane);
         content.getChildren().remove(requirementsPane);
-        content.getChildren().remove(applyButton);
+        // content.getChildren().remove(applyButton);
+        applyButton.setVisible(false);
 
     }
 
