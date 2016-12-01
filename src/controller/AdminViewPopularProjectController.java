@@ -47,13 +47,12 @@ public class AdminViewPopularProjectController extends Controller {
 			String sql;
 
 			// get project data
-			sql = "SELECT projectName, COUNT(*) FROM APPLICATION GROUP BY projectName ORDER BY COUNT(*) DESC LIMIT 10;";
+			sql = "SELECT projectName, COUNT(username) as count FROM APPLICATION NATURAL RIGHT JOIN PROJECT GROUP BY projectName ORDER BY COUNT(username) DESC, projectName LIMIT 10;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				String projectName = rs.getString("projectName");
-				Integer numApplications = ((Number) rs.getObject("COUNT(*)")).intValue();
+				Integer numApplications = rs.getInt("count");
 				projects.add(new Project(projectName, numApplications));
-
 			}
 
 			rs.close();

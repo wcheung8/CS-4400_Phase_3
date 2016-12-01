@@ -155,8 +155,7 @@ public class AdminViewAppsController extends Controller {
 
 				String sql = "UPDATE APPLICATION SET status=0" 
 						  + " WHERE username='" + a.getName().get() 
-						 + "' AND projectName = '" + a.getProject().get()
-						+ "';";
+						 + "' AND projectName = '" + a.getProject().get() + "';";
 
 				stmt.executeUpdate(sql);
 				stmt.close();
