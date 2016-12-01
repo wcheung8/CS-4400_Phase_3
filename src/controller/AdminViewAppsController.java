@@ -6,21 +6,21 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import model.Application;
+import model.AdminApplication;
 import java.sql.*;
 
 public class AdminViewAppsController extends Controller {
 
 	@FXML
-	private TableView<Application> view;
+	private TableView<AdminApplication> view;
 	@FXML
-	private TableColumn<Application, String> projectCol;
+	private TableColumn<AdminApplication, String> projectCol;
 	@FXML
-	private TableColumn<Application, String> majorCol;
+	private TableColumn<AdminApplication, String> majorCol;
 	@FXML
-	private TableColumn<Application, String> yearCol;
+	private TableColumn<AdminApplication, String> yearCol;
 	@FXML
-	private TableColumn<Application, String> statusCol;
+	private TableColumn<AdminApplication, String> statusCol;
 
 	// driver details
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -29,7 +29,7 @@ public class AdminViewAppsController extends Controller {
 	Connection conn = null;
 	Statement stmt = null;
 
-	ObservableList<Application> applications = FXCollections.observableArrayList();
+	ObservableList<AdminApplication> applications = FXCollections.observableArrayList();
 
 	public void initialize() {
 
@@ -41,11 +41,11 @@ public class AdminViewAppsController extends Controller {
 		majorCol.setCellValueFactory(cellData -> cellData.getValue().getMajor());
 		yearCol.setCellValueFactory(cellData -> cellData.getValue().getYear());
 		statusCol.setCellValueFactory(cellData -> cellData.getValue().getStatus());
-		view.setItems((ObservableList<Application>) getData());
+		view.setItems((ObservableList<AdminApplication>) getData());
 	}
 
 	@FXML
-	public ObservableList<Application> getData() {
+	public ObservableList<AdminApplication> getData() {
 
 		// flush old data
 		applications.clear();
@@ -75,7 +75,7 @@ public class AdminViewAppsController extends Controller {
 					status = "Rejected";
 				}
 
-				applications.add(new Application(username, projectName, majorName, year, status));
+				applications.add(new AdminApplication(username, projectName, majorName, year, status));
 			}
 
 			rs.close();
@@ -99,7 +99,7 @@ public class AdminViewAppsController extends Controller {
 	@FXML
 	public void handleAcceptPressed() {
 		// get all selected
-		ObservableList<Application> selected = view.getSelectionModel().getSelectedItems();
+		ObservableList<AdminApplication> selected = view.getSelectionModel().getSelectedItems();
 
 		// check no selected
 		if (selected == null) {
@@ -108,7 +108,7 @@ public class AdminViewAppsController extends Controller {
 		}
 
 		// update each selected application
-		for (Application a : selected) {
+		for (AdminApplication a : selected) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 
@@ -137,7 +137,7 @@ public class AdminViewAppsController extends Controller {
 	@FXML
 	public void handleRejectPressed() {
 		// get all selected
-		ObservableList<Application> selected = view.getSelectionModel().getSelectedItems();
+		ObservableList<AdminApplication> selected = view.getSelectionModel().getSelectedItems();
 
 		// check no selected
 		if (selected == null) {
@@ -146,7 +146,7 @@ public class AdminViewAppsController extends Controller {
 		}
 
 		// update each selected application
-		for (Application a : selected) {
+		for (AdminApplication a : selected) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 

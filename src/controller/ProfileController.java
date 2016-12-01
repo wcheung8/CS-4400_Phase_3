@@ -145,6 +145,6 @@ public class ProfileController extends Controller {
 
 	@FXML
 	private void handleBackPressed() {
-		showScreen("../view/MainScreen.fxml", "Main Screen");
+		showScreen("../view/Me.fxml", "Me");
 	}
 }
