@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCourseController">
    <children>
    		<Label alignment="center" layoutX="278.0" layoutY="31.0" text="Add a Course" textFill="#c7b877">
 			<font>
@@ -14,18 +14,18 @@
 			</font>
 		</Label>
 		<Text layoutX="125.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Number:" />
-		<TextField layoutX="242.0" layoutY="105.0" prefHeight="31.0" prefWidth="316.0" />
+		<TextField fx:id="courseNumField" layoutX="242.0" layoutY="105.0" prefHeight="31.0" prefWidth="316.0" />
 		<Text layoutX="141.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Name:" />
 		<Text layoutX="168.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructor:" />
 		<Text layoutX="167.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
 		<Text layoutX="151.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
 		<Text layoutX="73.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated # of Students:" />
-		<TextField layoutX="242.0" layoutY="142.0" prefHeight="31.0" prefWidth="316.0" />
-		<TextField layoutX="242.0" layoutY="182.0" prefHeight="31.0" prefWidth="316.0" />
-		<TextField layoutX="242.0" layoutY="435.0" prefHeight="31.0" prefWidth="316.0" />
-		<ChoiceBox layoutX="242.0" layoutY="223.0" prefHeight="31.0" prefWidth="316.0" />
-		<Button layoutX="410.0" layoutY="485.0" mnemonicParsing="false" text="Submit" />
+		<TextField fx:id="courseNameField" layoutX="242.0" layoutY="142.0" prefHeight="31.0" prefWidth="316.0" />
+		<TextField fx:id="instructorField" layoutX="242.0" layoutY="182.0" prefHeight="31.0" prefWidth="316.0" />
+		<TextField fx:id="estNumField" layoutX="242.0" layoutY="435.0" prefHeight="31.0" prefWidth="316.0" />
+		<Button layoutX="410.0" layoutY="485.0" mnemonicParsing="false" onAction="#handleSubmitPressed" text="Submit" />
 		<Button layoutX="327.0" layoutY="485.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
-      <ListView layoutX="242.0" layoutY="269.0" prefHeight="149.0" prefWidth="316.0" />
+      <ListView fx:id="categoryField" layoutX="242.0" layoutY="269.0" prefHeight="149.0" prefWidth="316.0" />
+      <ComboBox fx:id="designationField" layoutX="242.0" layoutY="223.0" prefHeight="31.0" prefWidth="316.0" />
    </children>
 </AnchorPane>

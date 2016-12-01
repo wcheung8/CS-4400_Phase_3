@@ -36,21 +36,6 @@ public class AdminController extends Controller {
 	}
 
 	@FXML
-	public void handleAcceptPressed() {
-
-	}
-
-	@FXML
-	public void handleRejectPressed() {
-
-	}
-
-	@FXML
-	public void handleAddCategory() {
-
-	}
-
-	@FXML
 	public void handleCancelPressed() {
 		showScreen("../view/LoginScreen.fxml", "Login");
 	}

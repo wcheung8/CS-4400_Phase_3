@@ -35,13 +35,13 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-            		<Text layoutX="253.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
+            		<Text layoutX="250.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
                   <Text fx:id="designation" layoutX="343.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation Placeholder" />
                </children>
             </Pane>
             <Pane prefHeight="250.0" prefWidth="799.0">
                <children>
-            		<Text layoutX="249.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
+            		<Text layoutX="250.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
                   <Label fx:id="category" alignment="TOP_LEFT" layoutX="324.0" layoutY="21.0" prefHeight="60.0" prefWidth="247.0" text="Category Placeholder" />
                </children>
             </Pane>

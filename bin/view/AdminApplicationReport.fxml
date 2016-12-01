@@ -22,6 +22,6 @@
         </columns>
       </TableView>
       <Button layoutX="59.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
-      <Text layoutX="59.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X aplications in total, accepted Y applications" />
+      <Label fx:id="numAppsDescription" layoutX="59.0" layoutY="110.0" text="X applications in total, accepted Y applications" />
    </children>
 </Pane>
