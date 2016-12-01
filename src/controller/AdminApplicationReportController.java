@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.ApplicationReport;
@@ -20,6 +21,8 @@ public class AdminApplicationReportController extends Controller {
 	private TableColumn<ApplicationReport, String> acceptRateCol;
 	@FXML
 	private TableColumn<ApplicationReport, String> topMajorCol;
+	@FXML
+	private Label numAppsDescription;
 
 	// driver details
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -54,6 +57,33 @@ public class AdminApplicationReportController extends Controller {
 			stmt = conn.createStatement();
 			stmt2 = conn.createStatement();
 			String sql;
+			ResultSet rs;
+			String totalApplications;
+			String acceptedApplications;
+			
+			// gets number of all applications
+			sql = "SELECT projectName, COUNT(*) FROM APPLICATION;";
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				totalApplications = rs.getString("COUNT(*)");
+			} else {
+				totalApplications = "0";
+			}
+			
+			//gets number of accepted applications
+			sql = "SELECT projectName, COUNT(projectName) FROM APPLICATION WHERE status = 1;";
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				acceptedApplications = rs.getString("COUNT(projectName)");
+			} else {
+				acceptedApplications = "0";
+			}
+			
+			//sets description 
+			numAppsDescription.setText(totalApplications
+					+ " applications in total, accepted "
+					+ acceptedApplications
+					+ " applications");
 			
 			/*
 			// JL Tests:
@@ -70,7 +100,7 @@ public class AdminApplicationReportController extends Controller {
 			// gets projectName, respective project counts, and acceptRate
 			sql = "SELECT projectName, allCount, CONCAT(ROUND(((acceptedCount)/(allCount)*100),2),'%') AS acceptRate FROM (SELECT allProjects.projectName, allProjects.allCount, IFNULL(acceptedProjects.acceptedCount, 0) as acceptedCount FROM (SELECT projectName, COUNT(*) as allCount FROM APPLICATION GROUP BY projectName) allProjects LEFT JOIN (SELECT projectName, COUNT(projectName) as acceptedCount FROM APPLICATION WHERE status = 1 GROUP BY projectName) acceptedProjects ON allProjects.projectName = acceptedProjects.projectName) joinedTable;";
 			
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				String projectName = rs.getString("projectName");
 				Integer numApplications =  rs.getInt("allCount");
