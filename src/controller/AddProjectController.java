@@ -8,6 +8,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import model.Activity;
 import java.sql.*;
@@ -26,7 +27,7 @@ public class AddProjectController extends Controller {
 	@FXML
 	private TextField advisorEmailField;
 	@FXML
-	private TextField descriptionField;
+	private TextArea descriptionField;
 	@FXML
 	private TextField estNumField;
 	@FXML
@@ -52,6 +53,8 @@ public class AddProjectController extends Controller {
 	@FXML
 	private void initialize() {
 
+		descriptionField.setWrapText(true);
+		
 		// set category to be multiselect
 		categoryField.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
