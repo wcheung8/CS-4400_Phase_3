@@ -100,11 +100,12 @@ public class AdminApplicationReportController extends Controller {
 			// gets projectName, respective project counts, and acceptRate
 			sql = "SELECT projectName, allCount, CONCAT(ROUND(((acceptedCount)/(allCount)*100),2),'%') AS acceptRate "
 			    + "FROM (SELECT allProjects.projectName, allProjects.allCount, IFNULL(acceptedProjects.acceptedCount, 0) as acceptedCount "
-			          + "FROM (SELECT projectName, COUNT(*) as allCount "
-			                + "FROM APPLICATION GROUP BY projectName) allProjects "
+			          + "FROM (SELECT projectName, COUNT(username) as allCount "
+			                + "FROM APPLICATION NATURAL RIGHT JOIN PROJECT GROUP BY projectName) allProjects "
 			                + "LEFT JOIN (SELECT projectName, COUNT(projectName) as acceptedCount "
 			                + "FROM APPLICATION WHERE status = 1 GROUP BY projectName) acceptedProjects "
-			                + "ON allProjects.projectName = acceptedProjects.projectName) joinedTable;";
+			                + "ON allProjects.projectName = acceptedProjects.projectName) joinedTable "
+			                + "ORDER BY allCount DESC;";
 			
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {

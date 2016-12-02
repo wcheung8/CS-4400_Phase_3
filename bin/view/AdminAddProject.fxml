@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddProjectController">
    <children>
-	    <Label alignment="center" layoutX="278.0" layoutY="31.0" text="Add a Project" textFill="#c7b877">
+		<Label alignment="center" layoutX="278.0" layoutY="31.0" text="Add a Project" textFill="#c7b877">
 			<font>
 				<Font size="41.0" />
 			</font>
@@ -26,14 +26,14 @@
 		<Text layoutX="78.0" layoutY="676.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department Requirement:" />
 		<TextField fx:id="advisorField" layoutX="253.0" layoutY="134.0" prefHeight="31.0" prefWidth="316.0" />
 		<TextField fx:id="advisorEmailField" layoutX="252.0" layoutY="174.0" prefHeight="31.0" prefWidth="316.0" />
-		<TextField fx:id="descriptionField" layoutX="253.0" layoutY="212.0" prefHeight="129.0" prefWidth="316.0" />
 		<TextField fx:id="estNumField" layoutX="253.0" layoutY="535.0" prefHeight="31.0" prefWidth="316.0" />
 		<Button layoutX="418.0" layoutY="707.0" mnemonicParsing="false" onAction="#handleSubmitPressed" text="Submit" />
 		<Button layoutX="335.0" layoutY="707.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
       	<ListView fx:id="categoryField" layoutX="254.0" layoutY="354.0" prefHeight="129.0" prefWidth="316.0" />
-      <ComboBox fx:id="designationField" layoutX="253.0" layoutY="498.0" prefHeight="31.0" prefWidth="316.0" />
-      <ComboBox fx:id="majorField" layoutX="253.0" layoutY="574.0" prefHeight="31.0" prefWidth="316.0" />
-      <ComboBox fx:id="yearField" layoutX="252.0" layoutY="615.0" prefHeight="31.0" prefWidth="316.0" />
-      <ComboBox fx:id="departmentField" layoutX="252.0" layoutY="655.0" prefHeight="31.0" prefWidth="316.0" />      
+      	<ComboBox fx:id="designationField" layoutX="253.0" layoutY="498.0" prefHeight="31.0" prefWidth="316.0" />
+	    <ComboBox fx:id="majorField" layoutX="253.0" layoutY="574.0" prefHeight="31.0" prefWidth="316.0" />
+	    <ComboBox fx:id="yearField" layoutX="252.0" layoutY="615.0" prefHeight="31.0" prefWidth="316.0" />
+	    <ComboBox fx:id="departmentField" layoutX="252.0" layoutY="655.0" prefHeight="31.0" prefWidth="316.0" />
+	    <TextArea fx:id="descriptionField" layoutX="254.0" layoutY="219.0" prefHeight="115.0" prefWidth="316.0" />      
    </children>
 </AnchorPane>

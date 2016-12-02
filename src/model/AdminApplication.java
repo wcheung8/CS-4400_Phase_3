@@ -3,14 +3,14 @@ package model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Application {
+public class AdminApplication {
 	private final StringProperty name = new SimpleStringProperty();
 	private final StringProperty project = new SimpleStringProperty();
 	private final StringProperty major = new SimpleStringProperty();
 	private final StringProperty year = new SimpleStringProperty();
 	private final StringProperty status = new SimpleStringProperty();
 
-	public Application(String name, String project, String major, String year, String status) {
+	public AdminApplication(String name, String project, String major, String year, String status) {
 		this.name.set(name);
 		this.project.set(project);
 		this.major.set(major);

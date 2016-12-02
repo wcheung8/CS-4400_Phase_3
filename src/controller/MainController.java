@@ -259,17 +259,15 @@ public class MainController extends Controller {
 		activities.clear();
 
 		initialize();
-
 	}
-
+	
 	@FXML
-	void handleProfilePressed() {
-		showScreen("../view/ProfileScreen.fxml", "Profile");
+	void handleMePressed() {
+		showScreen("../view/Me.fxml", "Me");
 	}
 	
 	@FXML
 	public void handleLogoutPressed() {
 		showScreen("../view/LoginScreen.fxml", "Login");
 	}
-
 }
