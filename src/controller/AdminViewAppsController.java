@@ -115,7 +115,7 @@ public class AdminViewAppsController extends Controller {
 				stmt = conn.createStatement();
 
 				String sql = "UPDATE APPLICATION SET status=1 "
-						   + "' AND projectName = '" + a.getProject().getValue() + "';";
+						  + " WHERE projectName = '" + a.getProject().get() + "';";
 
 				stmt.executeUpdate(sql);
 				stmt.close();
@@ -151,8 +151,8 @@ public class AdminViewAppsController extends Controller {
 				conn = DriverManager.getConnection(DB_URL, "cs4400_Team_1", "MONLSe9e");
 				stmt = conn.createStatement();
 
-				String sql = "UPDATE APPLICATION SET status=0"
-						 + "' AND projectName = '" + a.getProject().get() + "';";
+				String sql = "UPDATE APPLICATION SET status=0" 
+						  + " WHERE projectName = '" + a.getProject().get() + "';";
 
 				stmt.executeUpdate(sql);
 				stmt.close();
