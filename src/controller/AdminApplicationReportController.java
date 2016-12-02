@@ -113,7 +113,13 @@ public class AdminApplicationReportController extends Controller {
 				Integer numApplications =  rs.getInt("allCount");
 				String acceptRate =  String.valueOf(rs.getInt("acceptRate")) + "%";
 				
-				sql = "SELECT projectName, majorName, COUNT(majorName) as numMajors FROM USER NATURAL JOIN APPLICATION WHERE projectName = '" + projectName + "' AND STATUS <> 0 GROUP BY majorName ORDER BY numMajors DESC LIMIT 3;";
+				sql = "SELECT projectName, majorName, COUNT(majorName) as numMajors "
+						+ "FROM USER NATURAL JOIN APPLICATION "
+						+ "WHERE projectName = '" + projectName + "'AND STATUS <> 0 "
+						+ "GROUP BY majorName "
+						+ "ORDER BY numMajors DESC "
+						+ "LIMIT 3;";
+				
 				ResultSet rs2 = stmt2.executeQuery(sql);
 				String topMajors = "";
 				while (rs2.next()) {
