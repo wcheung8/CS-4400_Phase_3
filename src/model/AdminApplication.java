@@ -17,11 +17,11 @@ public class AdminApplication {
 		this.year.set(year);
 		this.status.set(status);
 	}
-
+	
 	public StringProperty getName() {
 		return name;
 	}
-
+	
 	public StringProperty getProject() {
 		return project;
 	}

@@ -61,7 +61,7 @@ public class AdminViewAppsController extends Controller {
 			sql = "SELECT username, projectName, majorName, year, status FROM USER NATURAL JOIN APPLICATION";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				String username = rs.getString("username");
+				String name = rs.getString("username");
 				String projectName = rs.getString("projectName");
 				String majorName = rs.getString("majorName");
 				String year = rs.getString("year");
@@ -75,7 +75,7 @@ public class AdminViewAppsController extends Controller {
 					status = "Rejected";
 				}
 
-				applications.add(new AdminApplication(username, projectName, majorName, year, status));
+				applications.add(new AdminApplication(name, projectName, majorName, year, status));
 			}
 
 			rs.close();
@@ -115,9 +115,9 @@ public class AdminViewAppsController extends Controller {
 				conn = DriverManager.getConnection(DB_URL, "cs4400_Team_1", "MONLSe9e");
 				stmt = conn.createStatement();
 
-				String sql = "UPDATE APPLICATION SET status=1 "
-						   + "WHERE username='" + a.getName().getValue() + 
-						   "' AND projectName = '" + a.getProject().getValue() + "';";
+				String sql = "UPDATE APPLICATION SET status=1"
+						   + " WHERE username='" + a.getName().getValue()
+						   + "' AND projectName = '" + a.getProject().get() + "';";
 
 				stmt.executeUpdate(sql);
 				stmt.close();
@@ -154,8 +154,8 @@ public class AdminViewAppsController extends Controller {
 				stmt = conn.createStatement();
 
 				String sql = "UPDATE APPLICATION SET status=0" 
-						  + " WHERE username='" + a.getName().get() 
-						 + "' AND projectName = '" + a.getProject().get() + "';";
+						+ " WHERE username='" + a.getName().getValue()
+						+ "' AND projectName = '" + a.getProject().getValue() + "';";
 
 				stmt.executeUpdate(sql);
 				stmt.close();
