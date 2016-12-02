@@ -10,11 +10,16 @@ public class AdminApplication {
 	private final StringProperty year = new SimpleStringProperty();
 	private final StringProperty status = new SimpleStringProperty();
 
-	public AdminApplication(String project, String major, String year, String status) {
+	public AdminApplication(String name, String project, String major, String year, String status) {
+		this.name.set(name);
 		this.project.set(project);
 		this.major.set(major);
 		this.year.set(year);
 		this.status.set(status);
+	}
+	
+	public StringProperty getName() {
+		return name;
 	}
 	
 	public StringProperty getProject() {
