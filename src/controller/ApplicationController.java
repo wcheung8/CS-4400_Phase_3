@@ -128,7 +128,7 @@ public class ApplicationController extends Controller {
             if (rs.next()) {
                 designation.setText(rs.getString("designationName"));
                 estNum.setText(rs.getString("estNum"));
-                advisor.setText(rs.getString("advisorName") + "(" + rs.getString("advisorEmail") + ")");
+                advisor.setText(rs.getString("advisorName") + " (" + rs.getString("advisorEmail") + ")");
                 description.setText(rs.getString("description"));
             }
             
@@ -150,7 +150,7 @@ public class ApplicationController extends Controller {
                 req = rs.getString("year");
             }
             while (rs.next()) {
-                req += "," + rs.getString("year");
+                req += ", " + rs.getString("year");
             }
             
             requirements.setText(req);

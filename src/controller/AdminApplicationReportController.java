@@ -104,7 +104,7 @@ public class AdminApplicationReportController extends Controller {
 				                + "NATURAL LEFT JOIN (SELECT projectName, COUNT(projectName) as acceptedCount "
 				                + "FROM APPLICATION WHERE status = 1 GROUP BY projectName) acceptedProjects"
 				          + ") joinedTable "
-				          + "ORDER BY rawAcceptRate DESC";
+				          + "ORDER BY rawAcceptRate DESC, projectName";
 			
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {

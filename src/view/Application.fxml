@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ApplicationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ApplicationController">
    <children>
       <VBox fx:id="content" alignment="TOP_CENTER" layoutX="-3.0" prefHeight="632.0" prefWidth="806.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -23,47 +23,47 @@
       		</Label>
             <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0">
                <children>
-            		<Text layoutX="250.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor:" />
-                  <Text fx:id="advisor" layoutX="337.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AdvisorName + Email" wrappingWidth="320.19580078125" />
+            		<Text layoutX="211.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor:" />
+                  <Text fx:id="advisor" layoutX="280.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AdvisorName + Email" wrappingWidth="320.19580078125" />
                </children>
             </Pane>
-            <Pane fx:id="descriptionPane" prefHeight="283.0" prefWidth="799.0">
+            <Pane fx:id="descriptionPane" prefHeight="339.0" prefWidth="799.0">
                <children>
-            		<Text layoutX="250.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
-                  <Label fx:id="description" alignment="TOP_LEFT" layoutX="250.0" layoutY="25.0" prefHeight="84.0" prefWidth="287.0" text="Description Placeholder" wrapText="true" />
+            		<Text layoutX="211.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
+                  <Label fx:id="description" alignment="TOP_LEFT" layoutX="211.0" layoutY="25.0" prefWidth="364.0" text="Description Placeholder" wrapText="true" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-            		<Text layoutX="250.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
-                  <Text fx:id="designation" layoutX="343.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation Placeholder" />
+            		<Text layoutX="216.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
+                  <Text fx:id="designation" layoutX="319.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation Placeholder" />
                </children>
             </Pane>
             <Pane prefHeight="250.0" prefWidth="799.0">
                <children>
-            		<Text layoutX="250.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
-                  <Label fx:id="category" alignment="TOP_LEFT" layoutX="324.0" layoutY="21.0" prefHeight="60.0" prefWidth="247.0" text="Category Placeholder" />
+            		<Text layoutX="210.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
+                  <Label fx:id="category" alignment="TOP_LEFT" layoutX="298.0" layoutY="13.0" prefWidth="287.0" text="Category Placeholder" wrapText="true" />
                </children>
             </Pane>
             <Pane fx:id="requirementsPane" prefHeight="250.0" prefWidth="799.0">
                <children>
-                  <Text layoutX="250.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requirements:" />
-                  <Label fx:id="requirements" alignment="TOP_LEFT" layoutX="361.0" layoutY="21.0" prefHeight="60.0" prefWidth="207.0" text="Requirements Placeholder" />
+                  <Text layoutX="206.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requirements:" />
+                  <Label fx:id="requirements" alignment="TOP_LEFT" layoutX="335.0" layoutY="13.0" prefWidth="255.0" text="Requirements Placeholder" wrapText="true" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Text layoutX="250.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated Number of Students:" />
-                  <Text fx:id="estNum" layoutX="466.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" wrappingWidth="160.65674823522568" />
+                  <Text layoutX="205.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated Number of Students:" />
+                  <Text fx:id="estNum" layoutX="423.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" wrappingWidth="160.65674823522568" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-            		<Button fx:id="applyButton" layoutX="424.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleApplyPressed" text="Apply" />
-            		<Button layoutX="322.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
+            		<Button fx:id="applyButton" layoutX="445.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleApplyPressed" text="Apply" />
+            		<Button layoutX="299.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
                </children>
                <VBox.margin>
-                  <Insets bottom="50.0" />
+                  <Insets bottom="30.0" />
                </VBox.margin>
             </Pane>
          </children>

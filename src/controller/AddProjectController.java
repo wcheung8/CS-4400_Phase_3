@@ -74,6 +74,7 @@ public class AddProjectController extends Controller {
             }
 
             // populate majors
+            majorField.getItems().add("No requirement");
             sql = "SELECT majorName " + "FROM MAJOR;";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -106,6 +107,7 @@ public class AddProjectController extends Controller {
         }
 
         // populate year (hardcoded)
+        yearField.getItems().add("No requirement");
         yearField.getItems().addAll("FR", "SO", "JR", "SR");
     }
 
@@ -154,19 +156,19 @@ public class AddProjectController extends Controller {
                 }
 
                 // insert into the major_requirement table
-                if (!(majorField.getSelectionModel().isEmpty())) {
+                if (!(majorField.getSelectionModel().isEmpty() || majorField.getSelectionModel().getSelectedItem().equals("No requirement"))) {
                     sql = "INSERT INTO MAJOR_REQUIREMENT VALUES ('" + projectNameField.getText() + "', '"
                             + majorField.getValue() + "');";
                     stmt.executeUpdate(sql);
                 }
                 // insert into the year_requirement table
-                if (!(yearField.getSelectionModel().isEmpty())) {
+                if (!(yearField.getSelectionModel().isEmpty() || yearField.getSelectionModel().getSelectedItem().equals("No requirement"))) {
                     sql = "INSERT INTO YEAR_REQUIREMENT VALUES ('" + projectNameField.getText() + "', '"
                             + yearField.getValue() + "');";
                     stmt.executeUpdate(sql);
                 }
                 // insert into the department_requirement table if departmentField is not empty
-                if (!(departmentField.getSelectionModel().isEmpty())) {
+                if (!(departmentField.getSelectionModel().isEmpty() || departmentField.getSelectionModel().getSelectedItem().equals("No requirement"))) {
                     sql = "INSERT INTO DEPARTMENT_REQUIREMENT VALUES ('" + projectNameField.getText() + "', '"
                             + departmentField.getValue() + "');";
                     stmt.executeUpdate(sql);
