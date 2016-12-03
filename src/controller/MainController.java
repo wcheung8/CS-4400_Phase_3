@@ -181,15 +181,31 @@ public class MainController extends Controller {
 		}
 		
 		//check empty category
-		if (category != null) {
+		if (!category.isEmpty() && category != null) {
+		    courseCategoryFilter += "AND (";
+		    projectCategoryFilter += "AND (";
+		    boolean first = true;
 			for(String s : category) {
-				courseCategoryFilter += "AND courseName in (SELECT courseName " 
-														 + "FROM COURSE_CATEGORY " 
-														 + "WHERE COURSE_CATEGORY.categoryName = '"+ s + "') ";
-				projectCategoryFilter += "AND projectName in (SELECT projectName " 
-														 + "FROM PROJECT_CATEGORY " 
-														 + "WHERE PROJECT_CATEGORY.categoryName = '"+ s + "') ";
+			    if(first) {
+			        courseCategoryFilter += "courseName in (SELECT courseName " 
+                            + "FROM COURSE_CATEGORY " 
+                            + "WHERE COURSE_CATEGORY.categoryName = '"+ s + "') ";
+			        projectCategoryFilter += "projectName in (SELECT projectName " 
+                            + "FROM PROJECT_CATEGORY " 
+                            + "WHERE PROJECT_CATEGORY.categoryName = '"+ s + "') ";
+			        first = false;
+			    } else {
+			        courseCategoryFilter += "OR courseName in (SELECT courseName " 
+                            + "FROM COURSE_CATEGORY " 
+                            + "WHERE COURSE_CATEGORY.categoryName = '"+ s + "') ";
+			        projectCategoryFilter += "OR projectName in (SELECT projectName " 
+                            + "FROM PROJECT_CATEGORY " 
+                            + "WHERE PROJECT_CATEGORY.categoryName = '"+ s + "') ";
+			    }
+				
 			}
+			courseCategoryFilter += ")";
+			projectCategoryFilter += ")";
 		}
 		
 		
@@ -212,7 +228,7 @@ public class MainController extends Controller {
 					+ departmentFilter
 					+ yearFilter
 					+ projectCategoryFilter;
-
+				System.out.println(sql);
 				rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 					String name = rs.getString("projectName");
