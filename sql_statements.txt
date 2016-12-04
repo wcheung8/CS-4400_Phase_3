@@ -1,0 +1,289 @@
+---------------------------------------------------------------------------------------------
+                                            USER
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+LOGIN:
+---------------------------------------------------------------------------------------------
+
+//authentication and check admin flag
+    SELECT isAdmin
+    FROM USER
+    WHERE username = 'username'
+    AND password ='password';
+
+---------------------------------------------------------------------------------------------
+REGISTER:
+---------------------------------------------------------------------------------------------
+
+//insert user into users
+    INSERT INTO USER (username, password, isAdmin, gtemail)
+    VALUES ('username', 'password', 0, 'email');
+
+---------------------------------------------------------------------------------------------
+EDIT PROFILE:
+---------------------------------------------------------------------------------------------
+
+//populate major dropdown
+    SELECT majorName
+    FROM MAJOR;
+
+//load user profile
+    SELECT majorName, year
+    FROM USER
+    WHERE username = 'username';
+
+//load user profile to change department
+    SELECT departmentName
+    FROM MAJOR
+    WHERE majorName = 'major';
+
+//update user major and year
+    UPDATE USER SET majorName = 'updatedMajor', year = 'updatedyear'
+    WHERE username='username';
+
+---------------------------------------------------------------------------------------------
+MY APPLICATION:
+---------------------------------------------------------------------------------------------
+
+//get application data
+    SELECT date, projectName, status
+    FROM APPLICATION
+    WHERE username = 'username'
+    ORDER BY date;
+
+---------------------------------------------------------------------------------------------
+VIEW AND APPLY PROJECT:
+---------------------------------------------------------------------------------------------
+
+//populate details based on selection and whether the selection was a project/course
+    SELECT *
+    FROM COURSE
+    WHERE courseName = 'selectedCourse';
+
+    SELECT *
+    FROM PROJECT
+    WHERE projectName = 'selectedProject';
+
+//check if user has filled out major/year to apply
+    SELECT *
+    FROM USER
+    WHERE username = 'currentUser'
+    AND (majorName = NULL OR year = NULL);
+
+//check requirements of the current user
+    SELECT *
+    FROM USER
+    WHERE username = 'currentUser'
+    AND ((NOT EXISTS (SELECT *
+                      FROM MAJOR_REQUIREMENT
+                      WHERE projectName = 'selectedProject') AND
+          NOT EXISTS (SELECT *
+                      FROM DEPARTMENT_REQUIREMENT
+                      WHERE projectName = 'selectedProject')) OR
+         (majorName in (SELECT majorName
+                        FROM MAJOR_REQUIREMENT
+                        WHERE projectName = 'selectedProject')) OR
+         (majorName in (SELECT majorName
+                        FROM MAJOR
+                        WHERE projectName = 'selectedProject')
+                        AND departmentName in (SELECT *
+                                               FROM DEPARTMENT_REQUIREMENT
+                                               WHERE projectName = 'selectedProject')))
+    AND ((NOT EXISTS (SELECT *
+                      FROM YEAR_REQUIREMENT
+                      WHERE projectName = 'selectedProject')) OR
+         year in (SELECT year
+                  FROM YEAR_REQUIREMENT
+                  WHERE projectName = 'selectedProject'));
+
+//successful application
+    INSERT INTO APPLICATION (username, projectName, date)
+    VALUES ('current user, 'selected project name', new java.sql.Date(Calendar.getInstance().getTime().getTime()));
+
+---------------------------------------------------------------------------------------------
+VIEW COURSE:
+---------------------------------------------------------------------------------------------
+
+//populate advisor, designation, and estimated number of students
+    SELECT *
+    FROM COURSE
+    WHERE courseName = 'selectedCourse';
+
+//populate categories for the selected course
+    SELECT categoryName
+    FROM COURSE_CATEGORY
+    WHERE courseName = 'selectedCourse';
+
+---------------------------------------------------------------------------------------------
+MAIN PAGE FILTERING:
+---------------------------------------------------------------------------------------------
+
+//populate dropdowns
+    SELECT designationName
+    FROM DESIGNATION;
+
+    SELECT majorName
+    FROM MAJOR;
+
+    SELECT categoryName
+    FROM CATEGORY;
+
+//view filtered projects
+    SELECT projectName
+    FROM PROJECT
+    WHERE projectName LIKE '%title%'
+    AND designationName = 'designation'
+    AND (projectName in (SELECT projectName
+                         FROM MAJOR_REQUIREMENT
+                         WHERE MAJOR_REQUIREMENT.majorName = 'major')
+      OR projectName in (SELECT projectName
+                         FROM DEPARTMENT_REQUIREMENT
+                         WHERE DEPARTMENT_REQUIREMENT.departmentName in (SELECT departmentName
+                                                                         FROM MAJOR
+                                                                         WHERE majorName = 'major') )
+      OR projectName not in (SELECT projectName
+                             FROM MAJOR_REQUIREMENT
+                             UNION SELECT projectName
+                             FROM DEPARTMENT_REQUIREMENT))
+    AND projectName in (SELECT projectName
+                       FROM YEAR_REQUIREMENT
+                       NATURAL RIGHT JOIN PROJECT
+                       WHERE YEAR_REQUIREMENT.year = 'year'
+                       OR YEAR_REQUIREMENT.year IS NULL)
+    AND projectName in (SELECT projectName
+                       FROM PROJECT_CATEGORY
+                       WHERE PROJECT_CATEGORY.categoryName = 'category'); <-- repeat for each category
+
+//view filtered courses
+    SELECT courseName
+    FROM COURSE
+    WHERE COURSENAME LIKE '%title%'
+    OR designationName = 'designation'
+    OR courseName in (SELECT courseName
+                      FROM COURSE_CATEGORY
+                      WHERE COURSE_CATEGORY.categoryName = 'category'); <-- repeat for each category
+
+---------------------------------------------------------------------------------------------
+                                           ADMIN
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+VIEW APPLICATIONS:
+---------------------------------------------------------------------------------------------
+
+//get all application data
+    SELECT projectName, majorName, year, status
+    FROM USER
+    NATURAL JOIN APPLICATION;
+
+//accept each selected application (repeat for each application)
+    UPDATE APPLICATION SET status = 1
+    WHERE username = 'username'
+    AND projectName = 'selectedProject';
+
+//reject each selected application (repeat for each application)
+    UPDATE APPLICATION SET status = 0
+    WHERE username = 'username'
+    AND projectName = 'selectedProject';
+
+---------------------------------------------------------------------------------------------
+VIEW POPULAR PROJECT REPORT:
+---------------------------------------------------------------------------------------------
+
+//get project data
+    SELECT projectName, COUNT(username) as count
+    FROM APPLICATION
+    NATURAL RIGHT JOIN PROJECT
+    GROUP BY projectName
+    ORDER BY COUNT(username) DESC,
+    projectName LIMIT 10;
+
+---------------------------------------------------------------------------------------------
+VIEW APPLICATION REPORT:
+---------------------------------------------------------------------------------------------
+
+//get number of all applications
+    SELECT projectName, COUNT(*)
+    FROM APPLICATION;
+
+//get number of accepted applications
+    SELECT projectName, COUNT(projectName)
+    FROM APPLICATION
+    WHERE status = 1;
+
+//gets all project names, respective project counts, and respective accept rates
+    SELECT projectName, allCount, ROUND(((acceptedCount)/(allCount)*100),2) as rawAcceptRate,
+        CONCAT(ROUND(((acceptedCount)/(allCount)*100),2),'%') AS acceptRate
+	FROM (SELECT allProjects.projectName, allProjects.allCount, IFNULL(acceptedProjects.acceptedCount, 0) as acceptedCount
+         FROM (
+            SELECT projectName, COUNT(username) as allCount
+            FROM APPLICATION
+            NATURAL RIGHT JOIN PROJECT
+            GROUP BY projectName
+         ) allProjects
+         NATURAL LEFT JOIN (
+            SELECT projectName, COUNT(projectName) as acceptedCount
+            FROM APPLICATION
+            WHERE status = 1
+            GROUP BY projectName
+         ) acceptedProjects
+    ) joinedTable
+	ORDER BY rawAcceptRate DESC;
+
+//get top 3 majors (repeat for each project)
+    SELECT projectName, majorName, COUNT(majorName) as numMajors
+    FROM USER NATURAL JOIN APPLICATION
+    WHERE projectName = 'projectName'
+    GROUP BY majorName
+    ORDER BY numMajors DESC, majorName
+    LIMIT 3;
+
+---------------------------------------------------------------------------------------------
+ADD PROJECT:
+---------------------------------------------------------------------------------------------
+
+//populate dropdowns
+    SELECT designationName
+    FROM DESIGNATION;
+
+    SELECT majorName
+    FROM MAJOR;
+
+    SELECT categoryName
+    FROM CATEGORY;
+
+    SELECT departmentName
+    FROM DEPARTMENT;
+
+//insert into project table
+    INSERT INTO PROJECT
+    VALUES ('projectName', 'projectDescription', 'estNum', 'advisorName', 'advisorEmail', 'designation');
+
+//insert into project_category table
+    INSERT INTO PROJECT_CATEGORY
+    VALUES ('projectName', 'category'); <-- repeat for each category
+
+//insert into major_requirement table
+    INSERT INTO MAJOR_REQUIREMENT
+    VALUES ('projectName', 'major');
+
+//insert into the year_requirement table
+    INSERT INTO YEAR_REQUIREMENT
+    VALUES ('projectName', 'year');
+
+//insert into department_requirement table
+    INSERT INTO DEPARTMENT_REQUIREMENT
+    VALUES ('projectName', 'department');
+
+---------------------------------------------------------------------------------------------
+ADD COURSE:
+---------------------------------------------------------------------------------------------
+
+//insert into course table
+    INSERT INTO COURSE
+    VALUES ('courseName', 'courseNumber', 'estNum', 'instructorName', 'designation');
+
+//insert into course_category table
+    INSERT INTO COURSE_CATEGORY
+    VALUES ('courseName', 'category'); <-- repeat for each category
