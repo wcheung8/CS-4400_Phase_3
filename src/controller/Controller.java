@@ -32,7 +32,7 @@ public abstract class Controller {
 
             Parent root = loader.load();
             Stage mainStage = Main.stage();
-            mainStage.setScene(new Scene(root, 800, 600));
+            mainStage.setScene(new Scene(root));
             mainStage.getIcons()
                     .add(new Image("https://upload.wikimedia.org/wikipedia/en/8/8f/GeorgiaTechYellowJackets.png"));
             mainStage.show();
