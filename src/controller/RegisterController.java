@@ -38,6 +38,8 @@ public class RegisterController extends Controller {
 			alert("Invalid Login", "Username or password not filled.");
 		} else if (!checkPassword.equals(password)) {
 			alert("Passwords must match!", "Password check did not match.");
+		} else if (!email.endsWith("@gatech.edu")){
+			alert("Valid email required.", "You must provide a gatech email.");
 		} else {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -56,7 +58,11 @@ public class RegisterController extends Controller {
 
 			} catch (SQLException se) {
 				if (se.getMessage().contains("Duplicate")) {
-					alert("Username/email already exists!", "Cannot insert duplicate username/email.");
+					if(se.getMessage().contains("email")) {
+						alert("Email already exists!", "Cannot insert duplicate email.");
+					} else {
+						alert("Username already exists!", "Cannot insert duplicate username.");
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

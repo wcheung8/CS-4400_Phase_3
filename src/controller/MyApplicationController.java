@@ -52,7 +52,7 @@ public class MyApplicationController extends Controller {
 			String sql;
 
 			// get all application data
-			sql = "SELECT date, projectName, status FROM APPLICATION WHERE username='" + Main.currentUsername + "';";
+			sql = "SELECT date, projectName, status FROM APPLICATION WHERE username='" + Main.currentUsername + "' ORDER BY date;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				String date = rs.getString("date");

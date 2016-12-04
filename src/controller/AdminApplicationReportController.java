@@ -106,6 +106,16 @@ public class AdminApplicationReportController extends Controller {
 				          + ") joinedTable "
 				          + "ORDER BY rawAcceptRate DESC, projectName";
 			
+			// for the case of allCount not including not pending projects
+			/*sql = "SELECT projectName, allCount, ROUND(((acceptedCount)/(notPendingCount)*100),2) as rawAcceptRate, CONCAT(ROUND(((acceptedCount)/(notPendingCount)*100),2),'%') AS acceptRate "
+				    + "FROM (SELECT allProjects.projectName, allProjects.allCount, allProjects.notPendingCount, IFNULL(acceptedProjects.acceptedCount, 0) as acceptedCount "
+				          + "FROM (SELECT projectName, COUNT(username) as allCount, COUNT(status) as notPendingCount "
+				                + "FROM APPLICATION NATURAL RIGHT JOIN PROJECT GROUP BY projectName) allProjects "
+				                + "NATURAL LEFT JOIN (SELECT projectName, COUNT(projectName) as acceptedCount "
+				                + "FROM APPLICATION WHERE status = 1 GROUP BY projectName) acceptedProjects"
+				          + ") joinedTable "
+				          + "ORDER BY rawAcceptRate DESC, projectName";*/
+			
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				String projectName = rs.getString("projectName");
@@ -114,9 +124,9 @@ public class AdminApplicationReportController extends Controller {
 				
 				sql = "SELECT projectName, majorName, COUNT(majorName) as numMajors "
 						+ "FROM USER NATURAL JOIN APPLICATION "
-						+ "WHERE projectName = '" + projectName + "'AND STATUS <> 0 "
-						+ "GROUP BY majorName "
-						+ "ORDER BY numMajors DESC "
+						+ "WHERE projectName = '" + projectName // + "'AND STATUS <> 0 "
+						+ "' GROUP BY majorName "
+						+ "ORDER BY numMajors DESC, majorName "
 						+ "LIMIT 3;";
 				
 				ResultSet rs2 = stmt2.executeQuery(sql);
