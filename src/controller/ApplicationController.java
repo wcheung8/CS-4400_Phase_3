@@ -147,10 +147,10 @@ public class ApplicationController extends Controller {
             String req = "";
             
             if(rs.next()) {
-                req = rs.getString("year");
+                req = rs.getString("year") + " only";
             }
             while (rs.next()) {
-                req += ", " + rs.getString("year");
+                req += " , " + rs.getString("year") + " only";
             }
             
             requirements.setText(req);
@@ -240,7 +240,8 @@ public class ApplicationController extends Controller {
 
                     alert("Application Success!", "You have successfully applied.");
                 } else {
-                    alert("Requirements not met!", "You don't meet the required description");
+                    alert("Requirements not met!", "You don't meet the required description: \n"
+                            + "Required major, department, year - \n" + requirements.getText());
                 }
             }
             
