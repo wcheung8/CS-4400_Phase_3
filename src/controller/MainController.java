@@ -138,6 +138,7 @@ public class MainController extends Controller {
 		String yearFilter = "";
 		String courseCategoryFilter = "";
 		String projectCategoryFilter = "";
+		String emptyRequirementFilter = "";
 		ObservableList<String> category = categoryField.getSelectionModel().getSelectedItems();
 		int tableChoice = 1;
 		boolean noRequirements = true;
@@ -169,15 +170,20 @@ public class MainController extends Controller {
                                                 + "FROM DEPARTMENT_REQUIREMENT " 
                                                 + "WHERE DEPARTMENT_REQUIREMENT.departmentName in (SELECT departmentName "
                                                                                                 + "FROM MAJOR "
-                                                                                                + "WHERE majorName = '" + majorField.getSelectionModel().getSelectedItem() + "') )) ";
+                                                                                                + "WHERE majorName = '" + majorField.getSelectionModel().getSelectedItem() + "') ) ";
+			emptyRequirementFilter = "OR projectName not in (SELECT projectName "
+													  + "FROM MAJOR_REQUIREMENT "
+													  + "UNION SELECT projectName "
+													  + "FROM DEPARTMENT_REQUIREMENT)) ";
 		}
 		
 		//check empty year
 		if (yearField.getSelectionModel().getSelectedItem() != null) {
 		    noRequirements = false;
 		    yearFilter = "AND projectName in (SELECT projectName " 
-										   + "FROM YEAR_REQUIREMENT " 
-										   + "WHERE YEAR_REQUIREMENT.year = '"+ yearField.getSelectionModel().getSelectedItem() + "') ";
+										   + "FROM YEAR_REQUIREMENT NATURAL RIGHT JOIN PROJECT " 
+										   + "WHERE YEAR_REQUIREMENT.year = '"+ yearField.getSelectionModel().getSelectedItem() + "' "
+									   	   + "OR YEAR_REQUIREMENT.year IS NULL) ";
 		}
 		
 		//check empty category
@@ -226,9 +232,9 @@ public class MainController extends Controller {
 					+ designationFilter
 					+ majorFilter
 					+ departmentFilter
+					+ emptyRequirementFilter
 					+ yearFilter
 					+ projectCategoryFilter;
-				System.out.println(sql);
 				rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 					String name = rs.getString("projectName");
@@ -250,7 +256,9 @@ public class MainController extends Controller {
 					activities.add(new Activity(name, "Course"));
 				}
 			}
-			rs.close();
+			if(rs != null) {
+				rs.close();
+			}
 			stmt.close();
 			conn.close();
 
