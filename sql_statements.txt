@@ -175,7 +175,8 @@ VIEW APPLICATIONS:
 //get all application data
     SELECT projectName, majorName, year, status
     FROM USER
-    NATURAL JOIN APPLICATION;
+    NATURAL JOIN APPLICATION
+    ORDER BY status;
 
 //accept each selected application (repeat for each application)
     UPDATE APPLICATION SET status = 1
