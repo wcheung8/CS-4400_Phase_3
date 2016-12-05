@@ -58,7 +58,7 @@ public class AdminViewAppsController extends Controller {
 			String sql;
 
 			// get all application data
-			sql = "SELECT username, projectName, majorName, year, status FROM USER NATURAL JOIN APPLICATION";
+			sql = "SELECT username, projectName, majorName, year, status FROM USER NATURAL JOIN APPLICATION ORDER BY status";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				String name = rs.getString("username");

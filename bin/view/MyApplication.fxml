@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MyApplicationController">
+   <children>
+      <Label layoutX="263.0" layoutY="35.0" text="My Application" textFill="#c7b877">
+         <font>
+            <Font size="41.0" />
+         </font>
+      </Label>
+      <TableView fx:id="view" layoutX="34.0" layoutY="150.0" prefHeight="359.0" prefWidth="730.0">
+        <columns>
+          <TableColumn fx:id="dateCol" prefWidth="111.0" text="Date" />
+          <TableColumn fx:id="projectCol" minWidth="0.0" prefWidth="471.0" text="Project Name" />
+          <TableColumn fx:id="statusCol" prefWidth="147.0" text="Status" />
+        </columns>
+      </TableView>
+      <Button layoutX="375.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back" />
+   </children>
+</Pane>
